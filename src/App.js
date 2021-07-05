@@ -1,25 +1,29 @@
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import { ThemeProvider } from "@material-ui/styles";
+import theme from "./Theme";
+import Header from "./components/Header";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import LandingPage from "./pages/LandingPage";
+import AboutUsPage from "./pages/AboutUs";
+import ContactUsPage from "./pages/ContactUs";
+import HotelHomePage from "./pages/Hotel/HotelHomePage";
+import RestaurantHomePage from "./pages/Restaurant/RestaurantHomePage";
+import AttractionHomePage from "./pages/Attraction/AttractionHomePage";
 
-function App() {
+export default function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <ThemeProvider theme={theme}>
+      <BrowserRouter>
+        <Switch>
+          <Route exact path="/" component={LandingPage} />
+          <Route exact path="/login" component={() => <div>login</div>} />
+          <Route exact path="/about" component={AboutUsPage} />
+          <Route exact path="/contact" component={ContactUsPage} />
+          <Route exact path="/hotels" component={HotelHomePage} />
+          <Route exact path="/restaurants" component={RestaurantHomePage} />
+          <Route exact path="/attractions" component={AttractionHomePage} />
+        </Switch>
+      </BrowserRouter>
+    </ThemeProvider>
   );
 }
-
-export default App;
