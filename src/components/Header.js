@@ -137,20 +137,16 @@ const useStyles = makeStyles((theme) => ({
     //padding: 10,
     flex: 1,
   },
-  iconButton: {
-    padding: 10,
-  },
 }));
 
 export default function Header(props) {
   const classes = useStyles();
 
   const [tabIndexValue, setTabIndexValue] = React.useState("0");
-  const [selectedIndex, setSelectedIndex] = useState(0);
 
-  const handleTabChange = (event, newValue) => {
-    setTabIndexValue(newValue);
-  };
+  // const handleTabChange = (event, newValue) => {
+  //   setTabIndexValue(newValue);
+  // };
   const routes = [
     {
       name: "Review",

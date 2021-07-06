@@ -1,12 +1,12 @@
 import React from "react";
 import { makeStyles } from "@material-ui/core/styles";
-
-import InputLabel from "@material-ui/core/InputLabel";
-import { DatePicker } from "@material-ui/pickers";
-import { MuiPickersUtilsProvider } from "@material-ui/pickers";
 import DateFnsUtils from "@date-io/date-fns";
-import { CalendarToday } from "@material-ui/icons";
-import { IconButton, InputAdornment } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
+import "date-fns";
+import {
+  MuiPickersUtilsProvider,
+  KeyboardDatePicker,
+} from "@material-ui/pickers";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -22,28 +22,21 @@ export default function Datepicker({ label, onChange, date }) {
 
   return (
     <MuiPickersUtilsProvider utils={DateFnsUtils}>
-      <InputLabel>{label}</InputLabel>
-      <DatePicker
-        className={classes.root}
-        fullWidth
-        autoOk
-        inputVariant="outlined"
-        margin="dense"
-        disableToolbar
-        variant="inline"
-        format="dd/MM/yyyy"
-        value={date}
-        onChange={onChange}
-        InputProps={{
-          endAdornment: (
-            <InputAdornment position="end">
-              <IconButton>
-                <CalendarToday />
-              </IconButton>
-            </InputAdornment>
-          ),
-        }}
-      />
+      <Grid container justify="space-around">
+        <KeyboardDatePicker
+          disableToolbar
+          ariant="inline"
+          format="dd/MM/yyyy"
+          margin="normal"
+          id="date-picker-inline"
+          label={label}
+          value={date}
+          onChange={onChange}
+          KeyboardButtonProps={{
+            "aria-label": "change date",
+          }}
+        />
+      </Grid>
     </MuiPickersUtilsProvider>
   );
 }

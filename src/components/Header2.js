@@ -26,8 +26,8 @@ const AntTab = withStyles((theme) => ({
   root: {
     textTransform: "none",
     fontSize: 16,
-    fontWeight: theme.typography.fontWeightRegular,
-
+    fontWeight: 500,
+    color: theme.palette.common.black,
     "&:hover": {
       color: theme.palette.secondary.main,
       opacity: 1,
@@ -74,6 +74,11 @@ const useStyles = makeStyles((theme) => ({
   },
   iconButton: {
     padding: 10,
+  },
+  antTabText: {
+    fontFamily: "Raleway",
+    //color: theme.palette.common.black,
+    //fontWeight: 500,
   },
 }));
 
@@ -132,16 +137,24 @@ export default function Header2() {
                 value={tabValue}
                 onChange={handleChange}
               >
-                <AntTab component={Link} to={route.HOTELS} label="Hotels" />
+                <AntTab
+                  component={Link}
+                  to={route.HOTELS}
+                  label={<span className={classes.antTabText}>Hotels</span>}
+                />
                 <AntTab
                   component={Link}
                   to={route.RESTAURANTS}
-                  label="Restaurants"
+                  label={
+                    <span className={classes.antTabText}>Restaurants</span>
+                  }
                 />
                 <AntTab
                   component={Link}
                   to={route.ATTRACTIONS}
-                  label="Things to do"
+                  label={
+                    <span className={classes.antTabText}>Things to do</span>
+                  }
                 />
               </AntTabs>
             </div>

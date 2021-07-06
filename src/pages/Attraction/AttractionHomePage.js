@@ -63,9 +63,5 @@ export default function AttractionHomePage() {
   const handleChange = (event, newValue) => {
     setTabValue(newValue);
   };
-  return (
-    <React.Fragment>
-      <Header2 />
-    </React.Fragment>
-  );
+  return <React.Fragment> </React.Fragment>;
 }

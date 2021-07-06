@@ -9,6 +9,7 @@ export default createMuiTheme({
       orange: `${tripyPink}`,
       white: "#FFF",
       grey: "#5a5e63",
+      lightGrey: "#dddbdb",
     },
     primary: {
       main: `${tripyBlue}`,
@@ -24,6 +25,11 @@ export default createMuiTheme({
       fontWeight: 400,
       fontSize: "1rem",
     },
-    h1: {},
+    h1: {
+      fontFamily: "Raleway",
+      textTransform: "none",
+      fontWeight: "bold",
+      fontSize: "1.8rem",
+    },
   },
 });
