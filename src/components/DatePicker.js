@@ -15,6 +15,10 @@ const useStyles = makeStyles((theme) => ({
   margin: {
     margin: theme.spacing(1),
   },
+  labelStyle: {
+    fontFamily: "Raleway",
+    color: theme.palette.secondary.main,
+  },
 }));
 
 export default function Datepicker({ label, onChange, date }) {
@@ -29,7 +33,7 @@ export default function Datepicker({ label, onChange, date }) {
           format="dd/MM/yyyy"
           margin="normal"
           id="date-picker-inline"
-          label={label}
+          label={<span className={classes.labelStyle}>{label}</span>}
           value={date}
           onChange={onChange}
           KeyboardButtonProps={{
