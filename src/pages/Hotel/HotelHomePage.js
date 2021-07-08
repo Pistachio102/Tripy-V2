@@ -23,42 +23,8 @@ import {
   KeyboardTimePicker,
   KeyboardDatePicker,
 } from "@material-ui/pickers";
-
-const AntTabs = withStyles((theme) => ({
-  root: {
-    minWidth: "100%",
-    borderBottom: "0.9px solid #b2c2cd",
-  },
-  indicator: {
-    backgroundColor: theme.palette.secondary.main,
-  },
-}))(Tabs);
-
-const AntTab = withStyles((theme) => ({
-  root: {
-    textTransform: "none",
-    fontSize: 16,
-    fontWeight: theme.typography.fontWeightRegular,
-
-    "&:hover": {
-      color: theme.palette.secondary.main,
-      opacity: 1,
-      fontWeight: "bold",
-    },
-    // "&$selected": {
-    //   color: theme.palette.common.black,
-    //   fontWeight: "bold",
-    // },
-    // "&:focus": {
-    //   color: theme.palette.common.black,
-    //   fontWeight: "bold",
-    // },
-  },
-  selected: {
-    color: theme.palette.common.black,
-    fontWeight: "bold",
-  },
-}))((props) => <Tab disableRipple {...props} />);
+import PropTypes from "prop-types";
+import Slider from "@material-ui/core/Slider";
 
 const useStyles = makeStyles((theme) => ({
   mainContainer: {
@@ -112,6 +78,54 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.common.black,
   },
 }));
+
+const PrettoSlider = withStyles((theme) => ({
+  root: {
+    color: theme.palette.secondary.main,
+    height: 8,
+    padding: "10px 0",
+  },
+  thumb: {
+    height: 24,
+    width: 24,
+    backgroundColor: theme.palette.common.white,
+    border: "2px solid currentColor",
+    marginTop: -8,
+    marginLeft: -12,
+    "&:focus, &:hover, &$active": {
+      boxShadow: "inherit",
+    },
+  },
+  active: {},
+  valueLabel: {
+    left: "calc(-50% + 3px)",
+    // right: "calc(50% + 12px)",
+    top: -30,
+    "& *": {
+      background: theme.palette.common.lightGrey,
+      color: theme.palette.secondary.main,
+    },
+  },
+  track: {
+    height: 8,
+    borderRadius: 4,
+  },
+  rail: {
+    height: 10,
+    borderRadius: 4,
+    opacity: 0.2,
+  },
+}))(Slider);
+
+function AirbnbThumbComponent(props) {
+  return (
+    <span {...props}>
+      <span className="bar" />
+      <span className="bar" />
+      <span className="bar" />
+    </span>
+  );
+}
 
 export default function HotelHomePage() {
   const classes = useStyles();
@@ -206,6 +220,28 @@ export default function HotelHomePage() {
                 <div className={classes.sidePaper}>
                   <Paper elevation={1}>
                     <Grid container direction="column">
+                      <Grid item>
+                        <div className={classes.formControl}>
+                          <Typography
+                            className={classes.formLabel}
+                            style={{ marginBottom: "2.5em" }}
+                          >
+                            Price Range
+                          </Typography>
+                          <div style={{ padding: "0em 0.8em" }}>
+                            <PrettoSlider
+                              //ThumbComponent={AirbnbThumbComponent}
+                              getAriaLabel={(index) =>
+                                index === 0 ? "Minimum price" : "Maximum price"
+                              }
+                              min={0}
+                              max={50000}
+                              defaultValue={[0, 20000]}
+                              valueLabelDisplay="on"
+                            />
+                          </div>
+                        </div>
+                      </Grid>
                       <Grid item>
                         <FormControl
                           component="fieldset"
