@@ -1,30 +1,20 @@
 import React, { useState } from "react";
-import { makeStyles, Typography, withStyles } from "@material-ui/core";
+import { makeStyles, Typography, withStyles, Button } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
-import Tabs from "@material-ui/core/Tabs";
-import Tab from "@material-ui/core/Tab";
-import Header2 from "../../components/Header2";
-import { Link } from "react-router-dom";
 import "date-fns";
-import DateFnsUtils from "@date-io/date-fns";
 import Datepicker from "../../components/DatePicker";
 import Paper from "@material-ui/core/Paper";
 import FormLabel from "@material-ui/core/FormLabel";
 import FormControl from "@material-ui/core/FormControl";
 import FormGroup from "@material-ui/core/FormGroup";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
-import FormHelperText from "@material-ui/core/FormHelperText";
 import Checkbox from "@material-ui/core/Checkbox";
 import Divider from "@material-ui/core/Divider";
 import Radio from "@material-ui/core/Radio";
+import HotelThumbnail from "../../assets/hotel.png";
 import RadioGroup from "@material-ui/core/RadioGroup";
-import {
-  MuiPickersUtilsProvider,
-  KeyboardTimePicker,
-  KeyboardDatePicker,
-} from "@material-ui/pickers";
-import PropTypes from "prop-types";
 import Slider from "@material-ui/core/Slider";
+import GradeIcon from "@material-ui/icons/Grade";
 
 const useStyles = makeStyles((theme) => ({
   mainContainer: {
@@ -49,12 +39,62 @@ const useStyles = makeStyles((theme) => ({
     display: "flex",
     flexWrap: "wrap",
     "& > *": {
-      margin: theme.spacing(1),
+      //margin: theme.spacing(1),
       width: "15em",
       height: "40em",
     },
   },
+  hotelDescriptionPaperDiv: {
+    display: "flex",
+    flexWrap: "wrap",
+    "& > *": {
+      //margin: theme.spacing(1),
+      width: "100%",
+      height: "15em",
+    },
+  },
+  hotelDescriptionPaper: {
+    flexWrap: "wrap",
+    padding: "0.2em",
+    height: "100%",
+    width: "100%",
+    "&:hover": {
+      boxShadow: theme.shadows[10],
+    },
+  },
+  hotelThumbnail: {
+    height: "15em",
+    width: "15em",
+    margin: 0,
+  },
+  hotelNameTitle: {
+    ...theme.typography.h2,
+    color: theme.palette.common.black,
+    elevation: 0,
+    marginBottom: "0.5rem",
+    "&:hover": {
+      //color: theme.palette.common.grey,
+      backgroundColor: "transparent",
+      borderBottom: "2px solid #000",
+      elevation: 0,
+    },
+  },
+  hotelNameDescSub: {
+    ...theme.typography.subtitle1,
+    color: theme.palette.common.grey,
+  },
+  hotelNameDescBold: {
+    fontFamily: "Raleway",
+    textTransform: "none",
+    fontWeight: "bold",
+    fontSize: "0.8rem",
+  },
+  hotelPaperFirstColumn: {
+    padding: "0.8em",
+    marginLeft: "0.8em",
+  },
   secondRow: {
+    padding: theme.spacing(1),
     marginTop: "2em",
     backgroundColor: theme.palette.common.lightGrey,
   },
@@ -76,6 +116,21 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 400,
     fontSize: "0.7rem",
     color: theme.palette.common.black,
+  },
+  ratingIcons: {
+    color: theme.palette.common.yellow,
+  },
+  viewDealsButton: {
+    fontFamily: "Raleway",
+    textTransform: "none",
+    backgroundColor: theme.palette.common.mastard,
+    borderRadius: 15,
+    width: "10em",
+    marginTop: "2rem",
+    "&:hover": {
+      //color: theme.palette.common.grey,
+      backgroundColor: theme.palette.common.lightMastard,
+    },
   },
 }));
 
@@ -215,7 +270,7 @@ export default function HotelHomePage() {
             </Grid>
           </Grid>
           <Grid item className={classes.secondRow}>
-            <Grid container direction="row">
+            <Grid container direction="row" spacing={1}>
               <Grid item>
                 <div className={classes.sidePaper}>
                   <Paper elevation={1}>
@@ -224,7 +279,7 @@ export default function HotelHomePage() {
                         <div className={classes.formControl}>
                           <Typography
                             className={classes.formLabel}
-                            style={{ marginBottom: "2.5em" }}
+                            style={{ marginBottom: "3.5em" }}
                           >
                             Price Range
                           </Typography>
@@ -241,6 +296,7 @@ export default function HotelHomePage() {
                             />
                           </div>
                         </div>
+                        <Divider variant="middle" />
                       </Grid>
                       <Grid item>
                         <FormControl
@@ -394,6 +450,88 @@ export default function HotelHomePage() {
                           {/* <FormHelperText>Be careful</FormHelperText> */}
                         </FormControl>
                         <Divider variant="middle" />
+                      </Grid>
+                    </Grid>
+                  </Paper>
+                </div>
+              </Grid>
+              <Grid item xs={9}>
+                <div className={classes.hotelDescriptionPaperDiv}>
+                  <Paper
+                    elevation={1}
+                    className={classes.hotelDescriptionPaper}
+                  >
+                    <Grid item container direction="row" space={1}>
+                      {/* <Grid item> */}
+                      <img
+                        alt="Hotel Picture"
+                        src={HotelThumbnail}
+                        className={classes.hotelThumbnail}
+                      ></img>
+                      {/* </Grid> */}
+                      <Grid item>
+                        <Grid
+                          container
+                          direction="column"
+                          alignItems="flex-start"
+                          className={classes.hotelPaperFirstColumn}
+                        >
+                          <Grid item>
+                            <Button
+                              variant="text"
+                              // disableRipple="true"
+                              // disableElevation="true"
+                              style={{ margin: 0, padding: 0 }}
+                            >
+                              <span className={classes.hotelNameTitle}>
+                                Hotel Pasadena
+                              </span>
+                            </Button>
+                          </Grid>
+
+                          <Grid item>
+                            <Typography className={classes.hotelNameDescSub}>
+                              Rating:
+                            </Typography>
+                          </Grid>
+                          <Grid
+                            item
+                            className={classes.ratingIcons}
+                            style={{ marginBottom: "1rem" }}
+                          >
+                            <GradeIcon />
+                            <GradeIcon />
+                            <GradeIcon />
+                            <GradeIcon />
+                          </Grid>
+                          <Grid item>
+                            <Typography className={classes.hotelNameDescSub}>
+                              Starts from:
+                            </Typography>
+                          </Grid>
+                          <Grid item>
+                            <Typography className={classes.hotelNameDescBold}>
+                              BDT 10,000
+                            </Typography>
+                          </Grid>
+                          <Grid item>
+                            <Button
+                              variant="contained"
+                              className={classes.viewDealsButton}
+                              disableRipple="true"
+                              //disableElevation="true"
+                            >
+                              View Deals
+                            </Button>
+                          </Grid>
+                        </Grid>
+                      </Grid>
+                      <Grid item>
+                        <Divider
+                          variant="middle"
+                          orientation="vertical"
+                          //className={classes.divider}
+                        />
                       </Grid>
                     </Grid>
                   </Paper>

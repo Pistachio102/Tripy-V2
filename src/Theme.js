@@ -10,6 +10,9 @@ export default createMuiTheme({
       white: "#FFF",
       grey: "#5a5e63",
       lightGrey: "#dddbdb",
+      mastard: "#f2b203",
+      lightMastard: "#f4c953",
+      yellow: "#fcea2a",
     },
     primary: {
       main: `${tripyBlue}`,
@@ -30,6 +33,18 @@ export default createMuiTheme({
       textTransform: "none",
       fontWeight: "bold",
       fontSize: "1.8rem",
+    },
+    h2: {
+      fontFamily: "Raleway",
+      textTransform: "none",
+      fontWeight: "bold",
+      fontSize: "1rem",
+    },
+    subtitle1: {
+      fontFamily: "Raleway",
+      textTransform: "none",
+      fontWeight: 400,
+      fontSize: 14,
     },
   },
 });
