@@ -13,6 +13,7 @@ export default createMuiTheme({
       mastard: "#f2b203",
       lightMastard: "#f4c953",
       yellow: "#fcea2a",
+      green: "#2db583",
     },
     primary: {
       main: `${tripyBlue}`,

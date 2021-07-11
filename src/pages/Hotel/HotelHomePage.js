@@ -15,6 +15,11 @@ import HotelThumbnail from "../../assets/hotel.png";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import Slider from "@material-ui/core/Slider";
 import GradeIcon from "@material-ui/icons/Grade";
+import CheckCircleIcon from "@material-ui/icons/CheckCircle";
+import PoolIcon from "@material-ui/icons/Pool";
+import WifiIcon from "@material-ui/icons/Wifi";
+import LocalOfferIcon from "@material-ui/icons/LocalOffer";
+import LanguageIcon from "@material-ui/icons/Language";
 
 const useStyles = makeStyles((theme) => ({
   mainContainer: {
@@ -41,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
     "& > *": {
       //margin: theme.spacing(1),
       width: "15em",
-      height: "40em",
+      //height: "40em",
     },
   },
   hotelDescriptionPaperDiv: {
@@ -72,6 +77,7 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.common.black,
     elevation: 0,
     marginBottom: "0.5rem",
+    borderBottom: "2px solid transparent",
     "&:hover": {
       //color: theme.palette.common.grey,
       backgroundColor: "transparent",
@@ -131,6 +137,35 @@ const useStyles = makeStyles((theme) => ({
       //color: theme.palette.common.grey,
       backgroundColor: theme.palette.common.lightMastard,
     },
+  },
+  divider: {
+    margin: "2rem",
+    height: "80%",
+  },
+  checkedIcon: {
+    height: "0.45em",
+    width: "0.45em",
+    marginRight: "0.5em",
+    color: theme.palette.common.green,
+    alignItems: "flex-end",
+  },
+  amenitiesText: {
+    fontFamily: "Raleway",
+    textTransform: "none",
+    fontWeight: 400,
+    fontSize: "0.7rem",
+    display: "flex",
+    alignItems: "center",
+    flexWrap: "wrap",
+    marginTop: "0.4em",
+  },
+  amenitiesIcon: {
+    height: "0.6em",
+    width: "0.6em",
+    marginRight: "0.5em",
+    // paddingTop: "0.2em",
+    //color: theme.palette.common.green,
+    alignItems: "flex-end",
   },
 }));
 
@@ -451,91 +486,195 @@ export default function HotelHomePage() {
                         </FormControl>
                         <Divider variant="middle" />
                       </Grid>
+                      <Grid item>
+                        <FormControl
+                          component="fieldset"
+                          className={classes.formControl}
+                        >
+                          <FormLabel
+                            component="legend"
+                            className={classes.formLabel}
+                          >
+                            Hotel Rating
+                          </FormLabel>
+                          <RadioGroup
+                            aria-label="hotelClass"
+                            name="hotelClass"
+                            value={hotelClassValue}
+                            onChange={handleHotelClassChange}
+                          >
+                            <FormControlLabel
+                              value="fiveStar"
+                              control={<Radio />}
+                              label={
+                                <span className={classes.ratingIcons}>
+                                  <GradeIcon />
+                                  <GradeIcon />
+                                  <GradeIcon />
+                                  <GradeIcon />
+                                  <GradeIcon />
+                                </span>
+                              }
+                            />
+                            <FormControlLabel
+                              value="fourStar"
+                              control={<Radio />}
+                              label={
+                                <span className={classes.ratingIcons}>
+                                  <GradeIcon />
+                                  <GradeIcon />
+                                  <GradeIcon />
+                                  <GradeIcon />
+                                </span>
+                              }
+                            />
+                            <FormControlLabel
+                              value="threeStar"
+                              control={<Radio />}
+                              label={
+                                <span className={classes.ratingIcons}>
+                                  <GradeIcon />
+                                  <GradeIcon />
+                                  <GradeIcon />
+                                </span>
+                              }
+                            />
+                          </RadioGroup>
+                          {/* <FormHelperText>Be careful</FormHelperText> */}
+                        </FormControl>
+                        <Divider variant="middle" />
+                      </Grid>
                     </Grid>
                   </Paper>
                 </div>
               </Grid>
-              <Grid item xs={9}>
-                <div className={classes.hotelDescriptionPaperDiv}>
-                  <Paper
-                    elevation={1}
-                    className={classes.hotelDescriptionPaper}
-                  >
-                    <Grid item container direction="row" space={1}>
-                      {/* <Grid item> */}
-                      <img
-                        alt="Hotel Picture"
-                        src={HotelThumbnail}
-                        className={classes.hotelThumbnail}
-                      ></img>
-                      {/* </Grid> */}
-                      <Grid item>
-                        <Grid
-                          container
-                          direction="column"
-                          alignItems="flex-start"
-                          className={classes.hotelPaperFirstColumn}
-                        >
-                          <Grid item>
-                            <Button
-                              variant="text"
-                              // disableRipple="true"
-                              // disableElevation="true"
-                              style={{ margin: 0, padding: 0 }}
-                            >
-                              <span className={classes.hotelNameTitle}>
-                                Hotel Pasadena
-                              </span>
-                            </Button>
-                          </Grid>
-
-                          <Grid item>
-                            <Typography className={classes.hotelNameDescSub}>
-                              Rating:
-                            </Typography>
-                          </Grid>
+              <Grid item container direction="column" xs={9}>
+                <Grid item>
+                  <div className={classes.hotelDescriptionPaperDiv}>
+                    <Paper
+                      elevation={1}
+                      className={classes.hotelDescriptionPaper}
+                    >
+                      <Grid item container direction="row" space={1}>
+                        {/* <Grid item> */}
+                        <img
+                          alt="Hotel Picture"
+                          src={HotelThumbnail}
+                          className={classes.hotelThumbnail}
+                        ></img>
+                        {/* </Grid> */}
+                        <Grid item>
                           <Grid
-                            item
-                            className={classes.ratingIcons}
-                            style={{ marginBottom: "1rem" }}
+                            container
+                            direction="column"
+                            alignItems="flex-start"
+                            className={classes.hotelPaperFirstColumn}
                           >
-                            <GradeIcon />
-                            <GradeIcon />
-                            <GradeIcon />
-                            <GradeIcon />
-                          </Grid>
-                          <Grid item>
-                            <Typography className={classes.hotelNameDescSub}>
-                              Starts from:
-                            </Typography>
-                          </Grid>
-                          <Grid item>
-                            <Typography className={classes.hotelNameDescBold}>
-                              BDT 10,000
-                            </Typography>
-                          </Grid>
-                          <Grid item>
-                            <Button
-                              variant="contained"
-                              className={classes.viewDealsButton}
-                              disableRipple="true"
-                              //disableElevation="true"
+                            <Grid item>
+                              <Button
+                                variant="text"
+                                // disableRipple="true"
+                                // disableElevation="true"
+                                style={{ margin: 0, padding: 0 }}
+                              >
+                                <span className={classes.hotelNameTitle}>
+                                  Hotel Pasadena
+                                </span>
+                              </Button>
+                            </Grid>
+
+                            <Grid item>
+                              <Typography className={classes.hotelNameDescSub}>
+                                Rating:
+                              </Typography>
+                            </Grid>
+                            <Grid
+                              item
+                              className={classes.ratingIcons}
+                              style={{ marginBottom: "1rem" }}
                             >
-                              View Deals
-                            </Button>
+                              <GradeIcon />
+                              <GradeIcon />
+                              <GradeIcon />
+                              <GradeIcon />
+                            </Grid>
+                            <Grid item>
+                              <Typography className={classes.hotelNameDescSub}>
+                                Starts from:
+                              </Typography>
+                            </Grid>
+                            <Grid item>
+                              <Typography className={classes.hotelNameDescBold}>
+                                BDT 10,000
+                              </Typography>
+                            </Grid>
+                            <Grid item>
+                              <Button
+                                variant="contained"
+                                className={classes.viewDealsButton}
+                                disableRipple="true"
+                                //disableElevation="true"
+                              >
+                                View Deals
+                              </Button>
+                            </Grid>
+                          </Grid>
+                        </Grid>
+                        <Grid item>
+                          <Divider
+                            variant="middle"
+                            orientation="vertical"
+                            className={classes.divider}
+                          />
+                        </Grid>
+                        <Grid item>
+                          <Grid container direction="column">
+                            <Grid item style={{ marginTop: "1.5rem" }}>
+                              <Typography className={classes.amenitiesText}>
+                                <CheckCircleIcon
+                                  className={classes.checkedIcon}
+                                />
+                                Free cancellation
+                              </Typography>
+
+                              <Typography className={classes.amenitiesText}>
+                                <CheckCircleIcon
+                                  className={classes.checkedIcon}
+                                />
+                                Pay at stay
+                              </Typography>
+                            </Grid>
+                            <Grid item style={{ marginTop: "2rem" }}>
+                              <Typography className={classes.hotelNameDescSub}>
+                                Amenities:
+                              </Typography>
+                              <Typography className={classes.amenitiesText}>
+                                <PoolIcon className={classes.amenitiesIcon} />{" "}
+                                Pool
+                              </Typography>
+                              <Typography className={classes.amenitiesText}>
+                                <WifiIcon className={classes.amenitiesIcon} />{" "}
+                                Free wi-fi
+                              </Typography>
+                              <Typography className={classes.amenitiesText}>
+                                <LocalOfferIcon
+                                  className={classes.amenitiesIcon}
+                                />{" "}
+                                Special offer
+                              </Typography>
+                              <Typography className={classes.amenitiesText}>
+                                <LanguageIcon
+                                  className={classes.amenitiesIcon}
+                                />{" "}
+                                Visit hotel's website
+                              </Typography>
+                            </Grid>
                           </Grid>
                         </Grid>
                       </Grid>
-                      <Grid item>
-                        <Divider
-                          variant="middle"
-                          orientation="vertical"
-                          //className={classes.divider}
-                        />
-                      </Grid>
-                    </Grid>
-                  </Paper>
-                </div>
+                    </Paper>
+                  </div>
+                </Grid>
               </Grid>
             </Grid>
           </Grid>
