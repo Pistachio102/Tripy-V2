@@ -4,6 +4,7 @@ import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Divider from "@material-ui/core/Divider";
 import GradeIcon from "@material-ui/icons/Grade";
+import Rating from "@material-ui/lab/Rating";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import PoolIcon from "@material-ui/icons/Pool";
 import WifiIcon from "@material-ui/icons/Wifi";
@@ -513,36 +514,21 @@ export default function HotelHomePage() {
                               value="fiveStar"
                               control={<Radio />}
                               label={
-                                <span className={classes.ratingIcons}>
-                                  <GradeIcon />
-                                  <GradeIcon />
-                                  <GradeIcon />
-                                  <GradeIcon />
-                                  <GradeIcon />
-                                </span>
+                                <Rating name="read-only" value={5} readOnly />
                               }
                             />
                             <FormControlLabel
                               value="fourStar"
                               control={<Radio />}
                               label={
-                                <span className={classes.ratingIcons}>
-                                  <GradeIcon />
-                                  <GradeIcon />
-                                  <GradeIcon />
-                                  <GradeIcon />
-                                </span>
+                                <Rating name="read-only" value={4} readOnly />
                               }
                             />
                             <FormControlLabel
                               value="threeStar"
                               control={<Radio />}
                               label={
-                                <span className={classes.ratingIcons}>
-                                  <GradeIcon />
-                                  <GradeIcon />
-                                  <GradeIcon />
-                                </span>
+                                <Rating name="read-only" value={3} readOnly />
                               }
                             />
                           </RadioGroup>
@@ -559,6 +545,7 @@ export default function HotelHomePage() {
                   <HotelCard
                     image={HotelThumbnail}
                     name="Hotel Pasadena"
+                    rating={5}
                     money="BDT 10,000"
                     freeCancellation={true}
                     payAtStay={true}
@@ -570,6 +557,7 @@ export default function HotelHomePage() {
                   <HotelCard
                     image={HotelThumbnail2}
                     name="Sylhet Palace"
+                    rating={4}
                     money="BDT 3,000"
                     freeCancellation={true}
                     payAtStay={true}
@@ -581,6 +569,7 @@ export default function HotelHomePage() {
                   <HotelCard
                     image={HotelThumbnail3}
                     name="Grand Sultan"
+                    rating={3}
                     money="BDT 12,000"
                     freeCancellation={true}
                     payAtStay={true}
@@ -592,6 +581,7 @@ export default function HotelHomePage() {
                   <HotelCard
                     image={HotelThumbnail4}
                     name="Royal Palace"
+                    rating={4}
                     money="BDT 5,000"
                     freeCancellation={true}
                     payAtStay={true}

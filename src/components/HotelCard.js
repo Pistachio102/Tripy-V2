@@ -9,6 +9,7 @@ import PoolIcon from "@material-ui/icons/Pool";
 import WifiIcon from "@material-ui/icons/Wifi";
 import LocalOfferIcon from "@material-ui/icons/LocalOffer";
 import LanguageIcon from "@material-ui/icons/Language";
+import Rating from "@material-ui/lab/Rating";
 
 const useStyles = makeStyles((theme) => ({
   mainContainer: {
@@ -179,6 +180,7 @@ const useStyles = makeStyles((theme) => ({
 export default function HotelCard({
   image,
   name,
+  rating,
   money,
   freeCancellation,
   payAtStay,
@@ -224,13 +226,10 @@ export default function HotelCard({
               </Grid>
               <Grid
                 item
-                className={classes.ratingIcons}
+                //className={classes.ratingIcons}
                 style={{ marginBottom: "1rem" }}
               >
-                <GradeIcon />
-                <GradeIcon />
-                <GradeIcon />
-                <GradeIcon />
+                <Rating name="read-only" value={rating} readOnly />
               </Grid>
               <Grid item>
                 <Typography className={classes.hotelNameDescSub}>
