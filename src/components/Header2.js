@@ -5,7 +5,7 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Header from "./Header";
 import { Link } from "react-router-dom";
-import * as route from "../Constants/Routes";
+import * as route from "../constants/Routes";
 import InputBase from "@material-ui/core/InputBase";
 import Paper from "@material-ui/core/Paper";
 import Divider from "@material-ui/core/Divider";
