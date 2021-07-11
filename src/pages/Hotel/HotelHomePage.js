@@ -1,25 +1,29 @@
 import React, { useState } from "react";
 import { makeStyles, Typography, withStyles, Button } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
-import "date-fns";
-import Datepicker from "../../components/DatePicker";
 import Paper from "@material-ui/core/Paper";
-import FormLabel from "@material-ui/core/FormLabel";
-import FormControl from "@material-ui/core/FormControl";
-import FormGroup from "@material-ui/core/FormGroup";
-import FormControlLabel from "@material-ui/core/FormControlLabel";
-import Checkbox from "@material-ui/core/Checkbox";
 import Divider from "@material-ui/core/Divider";
-import Radio from "@material-ui/core/Radio";
-import HotelThumbnail from "../../assets/hotel.png";
-import RadioGroup from "@material-ui/core/RadioGroup";
-import Slider from "@material-ui/core/Slider";
 import GradeIcon from "@material-ui/icons/Grade";
 import CheckCircleIcon from "@material-ui/icons/CheckCircle";
 import PoolIcon from "@material-ui/icons/Pool";
 import WifiIcon from "@material-ui/icons/Wifi";
 import LocalOfferIcon from "@material-ui/icons/LocalOffer";
 import LanguageIcon from "@material-ui/icons/Language";
+import "date-fns";
+import Datepicker from "../../components/DatePicker";
+import FormLabel from "@material-ui/core/FormLabel";
+import FormControl from "@material-ui/core/FormControl";
+import FormGroup from "@material-ui/core/FormGroup";
+import FormControlLabel from "@material-ui/core/FormControlLabel";
+import Checkbox from "@material-ui/core/Checkbox";
+import Radio from "@material-ui/core/Radio";
+import HotelThumbnail from "../../assets/hotel.png";
+import HotelThumbnail2 from "../../assets/hotel2.jpg";
+import HotelThumbnail3 from "../../assets/hotel3.jpg";
+import HotelThumbnail4 from "../../assets/hotel4.jpeg";
+import RadioGroup from "@material-ui/core/RadioGroup";
+import Slider from "@material-ui/core/Slider";
+import HotelCard from "../../components/HotelCard";
 
 const useStyles = makeStyles((theme) => ({
   mainContainer: {
@@ -103,6 +107,8 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(1),
     marginTop: "2em",
     backgroundColor: theme.palette.common.lightGrey,
+    // display: "flex",
+    // flexWrap: "wrap",
   },
   formControl: {
     margin: theme.spacing(2),
@@ -550,130 +556,50 @@ export default function HotelHomePage() {
               </Grid>
               <Grid item container direction="column" xs={9}>
                 <Grid item>
-                  <div className={classes.hotelDescriptionPaperDiv}>
-                    <Paper
-                      elevation={1}
-                      className={classes.hotelDescriptionPaper}
-                    >
-                      <Grid item container direction="row" space={1}>
-                        {/* <Grid item> */}
-                        <img
-                          alt="Hotel Picture"
-                          src={HotelThumbnail}
-                          className={classes.hotelThumbnail}
-                        ></img>
-                        {/* </Grid> */}
-                        <Grid item>
-                          <Grid
-                            container
-                            direction="column"
-                            alignItems="flex-start"
-                            className={classes.hotelPaperFirstColumn}
-                          >
-                            <Grid item>
-                              <Button
-                                variant="text"
-                                // disableRipple="true"
-                                // disableElevation="true"
-                                style={{ margin: 0, padding: 0 }}
-                              >
-                                <span className={classes.hotelNameTitle}>
-                                  Hotel Pasadena
-                                </span>
-                              </Button>
-                            </Grid>
-
-                            <Grid item>
-                              <Typography className={classes.hotelNameDescSub}>
-                                Rating:
-                              </Typography>
-                            </Grid>
-                            <Grid
-                              item
-                              className={classes.ratingIcons}
-                              style={{ marginBottom: "1rem" }}
-                            >
-                              <GradeIcon />
-                              <GradeIcon />
-                              <GradeIcon />
-                              <GradeIcon />
-                            </Grid>
-                            <Grid item>
-                              <Typography className={classes.hotelNameDescSub}>
-                                Starts from:
-                              </Typography>
-                            </Grid>
-                            <Grid item>
-                              <Typography className={classes.hotelNameDescBold}>
-                                BDT 10,000
-                              </Typography>
-                            </Grid>
-                            <Grid item>
-                              <Button
-                                variant="contained"
-                                className={classes.viewDealsButton}
-                                disableRipple="true"
-                                //disableElevation="true"
-                              >
-                                View Deals
-                              </Button>
-                            </Grid>
-                          </Grid>
-                        </Grid>
-                        <Grid item>
-                          <Divider
-                            variant="middle"
-                            orientation="vertical"
-                            className={classes.divider}
-                          />
-                        </Grid>
-                        <Grid item>
-                          <Grid container direction="column">
-                            <Grid item style={{ marginTop: "1.5rem" }}>
-                              <Typography className={classes.amenitiesText}>
-                                <CheckCircleIcon
-                                  className={classes.checkedIcon}
-                                />
-                                Free cancellation
-                              </Typography>
-
-                              <Typography className={classes.amenitiesText}>
-                                <CheckCircleIcon
-                                  className={classes.checkedIcon}
-                                />
-                                Pay at stay
-                              </Typography>
-                            </Grid>
-                            <Grid item style={{ marginTop: "2rem" }}>
-                              <Typography className={classes.hotelNameDescSub}>
-                                Amenities:
-                              </Typography>
-                              <Typography className={classes.amenitiesText}>
-                                <PoolIcon className={classes.amenitiesIcon} />{" "}
-                                Pool
-                              </Typography>
-                              <Typography className={classes.amenitiesText}>
-                                <WifiIcon className={classes.amenitiesIcon} />{" "}
-                                Free wi-fi
-                              </Typography>
-                              <Typography className={classes.amenitiesText}>
-                                <LocalOfferIcon
-                                  className={classes.amenitiesIcon}
-                                />{" "}
-                                Special offer
-                              </Typography>
-                              <Typography className={classes.amenitiesText}>
-                                <LanguageIcon
-                                  className={classes.amenitiesIcon}
-                                />{" "}
-                                Visit hotel's website
-                              </Typography>
-                            </Grid>
-                          </Grid>
-                        </Grid>
-                      </Grid>
-                    </Paper>
-                  </div>
+                  <HotelCard
+                    image={HotelThumbnail}
+                    name="Hotel Pasadena"
+                    money="BDT 10,000"
+                    freeCancellation={true}
+                    payAtStay={true}
+                    pool={true}
+                    wifi={true}
+                    offer={true}
+                    website={true}
+                  />
+                  <HotelCard
+                    image={HotelThumbnail2}
+                    name="Sylhet Palace"
+                    money="BDT 3,000"
+                    freeCancellation={true}
+                    payAtStay={true}
+                    pool={true}
+                    wifi={true}
+                    offer={false}
+                    website={true}
+                  />
+                  <HotelCard
+                    image={HotelThumbnail3}
+                    name="Grand Sultan"
+                    money="BDT 12,000"
+                    freeCancellation={true}
+                    payAtStay={true}
+                    pool={true}
+                    wifi={true}
+                    offer={true}
+                    website={true}
+                  />
+                  <HotelCard
+                    image={HotelThumbnail4}
+                    name="Royal Palace"
+                    money="BDT 5,000"
+                    freeCancellation={true}
+                    payAtStay={true}
+                    pool={true}
+                    wifi={true}
+                    offer={false}
+                    website={true}
+                  />
                 </Grid>
               </Grid>
             </Grid>
