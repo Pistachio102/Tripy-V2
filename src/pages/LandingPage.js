@@ -15,7 +15,8 @@ import { Link } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
   mainContainer: {
     marginTop: "6rem",
-    paddingLeft: "15rem",
+    //paddingLeft: "15rem",
+    //justifyContent: "center",
   },
   secondContainer: {
     marginTop: "1rem",
@@ -69,11 +70,11 @@ const useStyles = makeStyles((theme) => ({
     height: 100,
     borderWidth: "0.09em",
     borderRadius: 20,
-    borderColor: theme.palette.secondary.light,
+    borderColor: theme.palette.primary.light,
     marginRight: "2em",
     "&:hover": {
       color: theme.palette.common.white,
-      backgroundColor: theme.palette.secondary.light,
+      backgroundColor: theme.palette.primary.light,
     },
   },
   homepageImage: {},
@@ -86,7 +87,12 @@ export default function LandingPage() {
     <React.Fragment>
       <Header />
       <div className={classes.mainContainer}>
-        <Grid container direction="column">
+        <Grid
+          container
+          direction="column"
+          alignContent="center"
+          // alignItems="space-between"
+        >
           <Grid
             item
             // container
@@ -94,7 +100,7 @@ export default function LandingPage() {
             // justify="space-around"
             // alignContent="center"
           >
-            <Grid container direction="row">
+            <Grid container direction="row" justify="space-between">
               <Grid item>
                 <Button variant="outlined" className={classes.buttonStyle}>
                   Hotel
@@ -117,8 +123,8 @@ export default function LandingPage() {
           </Grid>
 
           <Grid item className={classes.secondContainer}>
-            <Grid container direction="row">
-              <Grid item xs={4} className={classes.leftGrid}>
+            <Grid container direction="row" justify="space-between">
+              <Grid item className={classes.leftGrid}>
                 <Typography className={classes.typography1}>
                   We Take Care <br /> of Your Trip
                 </Typography>
@@ -153,7 +159,7 @@ export default function LandingPage() {
                   </Button>
                 </Paper>
               </Grid>
-              <Grid item item xs={8} alignItems="flex-end">
+              <Grid item item alignItems="flex-end">
                 <img
                   alt="Home page image"
                   src={HomePageImage}

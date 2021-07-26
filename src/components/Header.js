@@ -112,7 +112,7 @@ const useStyles = makeStyles((theme) => ({
     borderColor: theme.palette.common.grey,
     borderRadius: 14,
     "&:hover": {
-      backgroundColor: theme.palette.secondary.light,
+      backgroundColor: theme.palette.primary.light,
       borderColor: "transparent",
     },
   },
@@ -187,13 +187,13 @@ export default function Header(props) {
   const tabs = (
     <React.Fragment>
       <div className={classes.tabContainer}>
-        <IconButton
+        {/* <IconButton
           className={classes.iconButtonHolder}
           // onClick={() => setOpenDrawer(!openDrawer)}
         >
           <CreateOutlinedIcon className={classes.iconButton} />
           <span className={classes.iconButtonText}>Review</span>
-        </IconButton>
+        </IconButton> */}
         <IconButton
           className={classes.iconButtonHolder}
           // onClick={() => setOpenDrawer(!openDrawer)}
@@ -253,7 +253,7 @@ export default function Header(props) {
             >
               <Typography className={classes.logoText}>Tripy</Typography>
             </Button>
-            <Paper
+            {/* <Paper
               component="form"
               className={classes.root}
               elevation={0}
@@ -271,8 +271,7 @@ export default function Header(props) {
               >
                 <SearchIcon />
               </IconButton>
-              {/* <Divider className={classes.divider} orientation="vertical" /> */}
-            </Paper>
+            </Paper> */}
             {tabs}
           </Toolbar>
         </AppBar>

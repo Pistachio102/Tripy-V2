@@ -554,6 +554,8 @@ export default function HotelHomePage() {
                     offer={true}
                     website={true}
                   />
+                </Grid>
+                <Grid item>
                   <HotelCard
                     image={HotelThumbnail2}
                     name="Sylhet Palace"
@@ -566,6 +568,8 @@ export default function HotelHomePage() {
                     offer={false}
                     website={true}
                   />
+                </Grid>
+                <Grid item>
                   <HotelCard
                     image={HotelThumbnail3}
                     name="Grand Sultan"
@@ -578,6 +582,8 @@ export default function HotelHomePage() {
                     offer={true}
                     website={true}
                   />
+                </Grid>
+                <Grid item>
                   <HotelCard
                     image={HotelThumbnail4}
                     name="Royal Palace"
@@ -591,6 +597,7 @@ export default function HotelHomePage() {
                     website={true}
                   />
                 </Grid>
+                <Grid item></Grid>
               </Grid>
             </Grid>
           </Grid>
