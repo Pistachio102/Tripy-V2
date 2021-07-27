@@ -159,7 +159,7 @@ export default function LandingPage() {
                   </Button>
                 </Paper>
               </Grid>
-              <Grid item item alignItems="flex-end">
+              <Grid item alignItems="flex-end">
                 <img
                   alt="Home page image"
                   src={HomePageImage}

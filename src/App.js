@@ -3,26 +3,37 @@ import { ThemeProvider } from "@material-ui/styles";
 import theme from "./Theme";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
 import LandingPage from "./pages/LandingPage";
-import AboutUsPage from "./pages/AboutUs";
-import ContactUsPage from "./pages/ContactUs";
 import HotelHomePage from "./pages/Hotel/HotelHomePage";
 import RestaurantHomePage from "./pages/Restaurant/RestaurantHomePage";
 import AttractionHomePage from "./pages/Attraction/AttractionHomePage";
+import Trips from "./pages/Trips";
+import SignIn from "./pages/SignIn";
+import SignUp from "./pages/SignUp";
 import Layout from "./layout/Layout";
+import * as route from "./constants/Routes";
 
 export default function App() {
   return (
     <ThemeProvider theme={theme}>
       <BrowserRouter>
         <Switch>
-          <Route exact path="/" component={LandingPage} />
-          <Route exact path="/login" component={() => <div>login</div>} />
-          <Route exact path="/about" component={AboutUsPage} />
-          <Route exact path="/contact" component={ContactUsPage} />
+          <Route exact path={route.HOME} component={LandingPage} />
+          <Route exact path={route.TRIPS} component={Trips} />
+          <Route exact path={route.SIGNIN} component={SignIn} />
+          <Route exact path={route.SIGNUP} component={SignUp} />
+          ``
           <Layout>
-            <Route exact path="/hotels" component={HotelHomePage} />
-            <Route exact path="/restaurants" component={RestaurantHomePage} />
-            <Route exact path="/attractions" component={AttractionHomePage} />
+            <Route exact path={route.HOTELS} component={HotelHomePage} />
+            <Route
+              exact
+              path={route.RESTAURANTS}
+              component={RestaurantHomePage}
+            />
+            <Route
+              exact
+              path={route.ATTRACTIONS}
+              component={AttractionHomePage}
+            />
           </Layout>
         </Switch>
       </BrowserRouter>

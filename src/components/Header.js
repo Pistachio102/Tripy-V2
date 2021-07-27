@@ -196,6 +196,8 @@ export default function Header(props) {
         </IconButton> */}
         <IconButton
           className={classes.iconButtonHolder}
+          component={Link}
+          to={route.TRIPS}
           // onClick={() => setOpenDrawer(!openDrawer)}
         >
           <DepartureBoardOutlinedIcon className={classes.iconButton} />
@@ -210,7 +212,12 @@ export default function Header(props) {
 
           <span className={classes.iconButtonText}>Alerts</span>
         </IconButton>
-        <Button variant="outlined" className={classes.signInButtonHolder}>
+        <Button
+          variant="outlined"
+          className={classes.signInButtonHolder}
+          component={Link}
+          to={route.SIGNIN}
+        >
           <span className={classes.signInButtonText}>Sign In</span>
         </Button>
       </div>
