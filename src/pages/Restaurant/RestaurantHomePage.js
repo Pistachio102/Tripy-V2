@@ -344,6 +344,7 @@ export default function HotelHomePage() {
                   <InputBase
                     className={classes.input}
                     placeholder="Where to go?"
+                    onChange={(e) => {}}
                     inputProps={{ "aria-label": "search database" }}
                   />
                 </Paper>

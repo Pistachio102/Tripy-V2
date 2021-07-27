@@ -148,6 +148,7 @@ export default function LandingPage() {
                     className={classes.input}
                     placeholder="Where to go?"
                     inputProps={{ "aria-label": "search database" }}
+                    onChange={(e) => {}}
                   />
                   <Button
                     variant="contained"
