@@ -184,11 +184,10 @@ export default function SignIn() {
                     disableElevation
                     disableRipple
                     disableFocusRipple
-                    className={classes.signUpButton}
                     component={Link}
                     to={route.SIGNUP}
                   >
-                    Sign Up!
+                    <span className={classes.signUpButton}>Sign Up!</span>
                   </Button>
                 </Typography>
               </Grid>

@@ -25,7 +25,7 @@ const useStyles = makeStyles((theme) => ({
     marginRight: "15rem",
   },
   carouselStyle: {
-    // width: "50em",
+    // width: "70%",
     height: "32em",
     backgroundColor: "transparent",
   },

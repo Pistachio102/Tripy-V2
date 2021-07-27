@@ -17,6 +17,10 @@ import Rating from "@material-ui/lab/Rating";
 import PhoneInTalkOutlinedIcon from "@material-ui/icons/PhoneInTalkOutlined";
 import EmailOutlinedIcon from "@material-ui/icons/EmailOutlined";
 import { MailOutlineOutlined } from "@material-ui/icons";
+import Card from "@material-ui/core/Card";
+import CardHeader from "@material-ui/core/CardHeader";
+import Avatar from "@material-ui/core/Avatar";
+import RatingCard from "../../components/RatingCard";
 
 const PrettoSlider = withStyles((theme) => ({
   root: {
@@ -60,8 +64,8 @@ const PrettoSlider = withStyles((theme) => ({
 const useStyles = makeStyles((theme) => ({
   mainContainer: {
     marginTop: "6rem",
-    // marginLeft: "10rem",
-    // marginRight: "10rem",
+    marginLeft: "12rem",
+    marginRight: "12rem",
     //paddingLeft: "15rem",
     //justifyContent: "center",
   },
@@ -174,6 +178,15 @@ const useStyles = makeStyles((theme) => ({
     verticalAlign: "bottom",
     marginRight: "0.2em",
   },
+  ratingTitle: {
+    ...theme.typography.h2,
+    color: theme.palette.common.black,
+    marginBottom: "0.5rem",
+  },
+
+  avatar: {
+    backgroundColor: theme.palette.common.grey,
+  },
 }));
 const guestPerRoom = [
   {
@@ -238,172 +251,199 @@ export default function HotelSpecific() {
     <React.Fragment>
       <Header />
       <div className={classes.mainContainer}>
-        <Grid container direction="column" spacing={3} alignContent="center">
+        <Grid container direction="column" spacing={3} alignItems="center">
           <Grid item>
             <Carousels />
           </Grid>
           <Grid item>
-            <Typography variant="h1">
-              Hotel Pasadena{"  "}
-              <Rating
-                name="read-only"
-                value={4}
-                readOnly
-                style={{ verticalAlign: "" }}
-              />
-            </Typography>
-          </Grid>
-          <Grid item>
-            <Typography variant="subtitle1">
-              <PhoneInTalkOutlinedIcon className={classes.phoneIcon} />
-              <span>+99018726356, </span>
-              <MailOutlineOutlined className={classes.mailIcon} />
-              <span>tasnim282@gmail.com</span>
-            </Typography>
-          </Grid>
-          <Grid item>
-            <Grid
-              container
-              direction="row"
-              justify="space-between"
-              spacing={3}
-              style={{ marginTop: "2em" }}
-            >
+            <Grid container direction="column" spacing={3}>
               <Grid item>
-                <div className={classes.sidePaperDiv}>
-                  <Paper elevation={4} className={classes.sidePaper}>
-                    <Grid
-                      container
-                      direction="column"
-                      alignItems="center"
-                      justify="center"
-                      spacing={3}
-                    >
-                      <Grid item>
-                        <Grid
-                          container
-                          direction="row"
-                          spacing={3}
-                          justify="center"
-                        >
-                          <Grid item xs={4}>
-                            <Datepicker
-                              label="Check In"
-                              onChange={handleFromDateChange}
-                              date={from}
-                            />
-                          </Grid>
-                          <Grid item xs={4}>
-                            <Datepicker
-                              label="Check Out"
-                              onChange={handleToDateChange}
-                              date={to}
-                            />
-                          </Grid>
-                        </Grid>
-                      </Grid>
-                      <Grid item>
-                        <Grid
-                          container
-                          direction="row"
-                          spacing={3}
-                          justify="center"
-                        >
-                          <Grid item xs={6}>
-                            <TextField
-                              id="standard-select-guests"
-                              select
-                              label={
-                                <span className={classes.labelStyle}>
-                                  Guests Per Room
-                                </span>
-                              }
-                              value={guestNumber}
-                              onChange={handleGuestNumberChange}
-                              className={classes.textField}
-                            >
-                              {guestPerRoom.map((option) => (
-                                <MenuItem
-                                  key={option.value}
-                                  value={option.value}
-                                >
-                                  {option.label}
-                                </MenuItem>
-                              ))}
-                            </TextField>
-                          </Grid>
-                          <Grid item xs={6}>
-                            <TextField
-                              id="standard-select-rooms"
-                              select
-                              label={
-                                <span className={classes.labelStyle}>
-                                  Rooms
-                                </span>
-                              }
-                              value={rooms}
-                              onChange={handleRoomNumberChange}
-                              className={classes.textField}
-                            >
-                              {numberOfRooms.map((option) => (
-                                <MenuItem
-                                  key={option.value}
-                                  value={option.value}
-                                >
-                                  {option.label}
-                                </MenuItem>
-                              ))}
-                            </TextField>
-                          </Grid>
-                        </Grid>
-                      </Grid>
-                      <Grid item xs={12}>
-                        <div className={classes.formControl}>
-                          <Typography
-                            className={classes.formLabel}
-                            style={{ marginBottom: "3.5em" }}
-                          >
-                            Price Range
-                          </Typography>
-                          <div style={{ padding: "0em 0.8em" }}>
-                            <PrettoSlider
-                              //ThumbComponent={AirbnbThumbComponent}
-                              getAriaLabel={(index) =>
-                                index === 0 ? "Minimum price" : "Maximum price"
-                              }
-                              min={0}
-                              max={50000}
-                              defaultValue={[0, 20000]}
-                              valueLabelDisplay="on"
-                            />
-                          </div>
-                        </div>
-                      </Grid>
-                      <Grid item>
-                        <Button
-                          variant="contained"
-                          className={classes.searchButton}
-                        >
-                          Search
-                        </Button>
-                      </Grid>
-                    </Grid>
-                  </Paper>
-                </div>
+                <Typography variant="h1">
+                  Hotel Pasadena{"  "}
+                  <Rating
+                    name="read-only"
+                    value={4}
+                    readOnly
+                    style={{ verticalAlign: "" }}
+                  />
+                </Typography>
               </Grid>
               <Grid item>
-                <iframe
-                  src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d57903.1295244442!2d91.82596229788118!3d24.899837316737425!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x375054d3d270329f%3A0xf58ef93431f67382!2sSylhet!5e0!3m2!1sen!2sbd!4v1623075185302!5m2!1sen!2sbd"
-                  // width="40em"
-                  // height="40em"
-                  allowfullscreen=""
-                  loading="lazy"
-                  className={classes.map}
-                ></iframe>
+                <Typography variant="subtitle1">
+                  <PhoneInTalkOutlinedIcon className={classes.phoneIcon} />
+                  <span>+99018726356, </span>
+                  <MailOutlineOutlined className={classes.mailIcon} />
+                  <span>tasnim282@gmail.com</span>
+                </Typography>
+              </Grid>
+              <Grid item>
+                <Grid
+                  container
+                  direction="row"
+                  justify="space-between"
+                  spacing={3}
+                  style={{ marginTop: "2em" }}
+                >
+                  <Grid item>
+                    <div className={classes.sidePaperDiv}>
+                      <Paper elevation={4} className={classes.sidePaper}>
+                        <Grid
+                          container
+                          direction="column"
+                          alignItems="center"
+                          justify="center"
+                          spacing={3}
+                        >
+                          <Grid item>
+                            <Grid
+                              container
+                              direction="row"
+                              spacing={3}
+                              justify="center"
+                            >
+                              <Grid item xs={4}>
+                                <Datepicker
+                                  label="Check In"
+                                  onChange={handleFromDateChange}
+                                  date={from}
+                                />
+                              </Grid>
+                              <Grid item xs={4}>
+                                <Datepicker
+                                  label="Check Out"
+                                  onChange={handleToDateChange}
+                                  date={to}
+                                />
+                              </Grid>
+                            </Grid>
+                          </Grid>
+                          <Grid item>
+                            <Grid
+                              container
+                              direction="row"
+                              spacing={3}
+                              justify="center"
+                            >
+                              <Grid item xs={6}>
+                                <TextField
+                                  id="standard-select-guests"
+                                  select
+                                  label={
+                                    <span className={classes.labelStyle}>
+                                      Guests Per Room
+                                    </span>
+                                  }
+                                  value={guestNumber}
+                                  onChange={handleGuestNumberChange}
+                                  className={classes.textField}
+                                >
+                                  {guestPerRoom.map((option) => (
+                                    <MenuItem
+                                      key={option.value}
+                                      value={option.value}
+                                    >
+                                      {option.label}
+                                    </MenuItem>
+                                  ))}
+                                </TextField>
+                              </Grid>
+                              <Grid item xs={6}>
+                                <TextField
+                                  id="standard-select-rooms"
+                                  select
+                                  label={
+                                    <span className={classes.labelStyle}>
+                                      Rooms
+                                    </span>
+                                  }
+                                  value={rooms}
+                                  onChange={handleRoomNumberChange}
+                                  className={classes.textField}
+                                >
+                                  {numberOfRooms.map((option) => (
+                                    <MenuItem
+                                      key={option.value}
+                                      value={option.value}
+                                    >
+                                      {option.label}
+                                    </MenuItem>
+                                  ))}
+                                </TextField>
+                              </Grid>
+                            </Grid>
+                          </Grid>
+                          <Grid item xs={12}>
+                            <div className={classes.formControl}>
+                              <Typography
+                                className={classes.formLabel}
+                                style={{ marginBottom: "3.5em" }}
+                              >
+                                Price Range
+                              </Typography>
+                              <div style={{ padding: "0em 0.8em" }}>
+                                <PrettoSlider
+                                  //ThumbComponent={AirbnbThumbComponent}
+                                  getAriaLabel={(index) =>
+                                    index === 0
+                                      ? "Minimum price"
+                                      : "Maximum price"
+                                  }
+                                  min={0}
+                                  max={50000}
+                                  defaultValue={[0, 20000]}
+                                  valueLabelDisplay="on"
+                                />
+                              </div>
+                            </div>
+                          </Grid>
+                          <Grid item>
+                            <Button
+                              variant="contained"
+                              className={classes.searchButton}
+                            >
+                              Search
+                            </Button>
+                          </Grid>
+                        </Grid>
+                      </Paper>
+                    </div>
+                  </Grid>
+                  <Grid item>
+                    <iframe
+                      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d57903.1295244442!2d91.82596229788118!3d24.899837316737425!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x375054d3d270329f%3A0xf58ef93431f67382!2sSylhet!5e0!3m2!1sen!2sbd!4v1623075185302!5m2!1sen!2sbd"
+                      // width="40em"
+                      // height="40em"
+                      allowfullscreen=""
+                      loading="lazy"
+                      className={classes.map}
+                    ></iframe>
+                  </Grid>
+                </Grid>
+              </Grid>
+              <Grid item style={{ marginTop: "2em" }}>
+                <Grid container direction="row" justify="flex-end">
+                  <Grid item>
+                    <Grid container direction="column" spacing={2}>
+                      <Grid item>
+                        <Typography className={classes.ratingTitle}>
+                          Ratings:
+                        </Typography>
+                      </Grid>
+                      <Grid item>
+                        <RatingCard avatar="P" name="Penny" rate={4} />
+                      </Grid>
+                      <Grid item>
+                        <RatingCard avatar="A" name="Amy" rate={3.5} />
+                      </Grid>
+                      <Grid item>
+                        <RatingCard avatar="K" name="Kripke" rate={5} />
+                      </Grid>
+                    </Grid>
+                  </Grid>
+                </Grid>
               </Grid>
             </Grid>
           </Grid>
-          <Grid item></Grid>
         </Grid>
       </div>
     </React.Fragment>
