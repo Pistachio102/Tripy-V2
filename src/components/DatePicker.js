@@ -17,7 +17,7 @@ const useStyles = makeStyles((theme) => ({
   },
   labelStyle: {
     fontFamily: "Raleway",
-    color: theme.palette.secondary.main,
+    color: theme.palette.common.grey,
   },
 }));
 

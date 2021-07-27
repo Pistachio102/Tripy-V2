@@ -17,9 +17,10 @@ import Rating from "@material-ui/lab/Rating";
 
 const PrettoSlider = withStyles((theme) => ({
   root: {
-    color: theme.palette.secondary.main,
+    color: theme.palette.common.grey,
     height: 8,
     padding: "10px 0",
+    width: "25em",
   },
   thumb: {
     height: 24,
@@ -39,7 +40,7 @@ const PrettoSlider = withStyles((theme) => ({
     top: -30,
     "& *": {
       background: theme.palette.common.lightGrey,
-      color: theme.palette.secondary.main,
+      color: theme.palette.common.black,
     },
   },
   track: {
@@ -97,6 +98,7 @@ const useStyles = makeStyles((theme) => ({
   },
   searchButton: {
     //padding: 10,
+    marginTop: "2em",
     color: theme.palette.common.white,
     backgroundColor: theme.palette.secondary.main,
     width: "20em",
@@ -122,6 +124,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   sidePaper: {
+    paddingTop: "3em",
     padding: "0.4em",
   },
   map: {
@@ -151,6 +154,10 @@ const useStyles = makeStyles((theme) => ({
     fontWeight: 400,
     fontSize: "0.6rem",
     color: theme.palette.common.black,
+  },
+  labelStyle: {
+    fontFamily: "Raleway",
+    color: theme.palette.common.grey,
   },
 }));
 const guestPerRoom = [
@@ -241,7 +248,7 @@ export default function HotelSpecific() {
             >
               <Grid item>
                 <div className={classes.sidePaperDiv}>
-                  <Paper elevation={2} className={classes.sidePaper}>
+                  <Paper elevation={4} className={classes.sidePaper}>
                     <Grid
                       container
                       direction="column"
@@ -283,7 +290,11 @@ export default function HotelSpecific() {
                             <TextField
                               id="standard-select-guests"
                               select
-                              label="Guest Per Room"
+                              label={
+                                <span className={classes.labelStyle}>
+                                  Guests Per Room
+                                </span>
+                              }
                               value={guestNumber}
                               onChange={handleGuestNumberChange}
                               className={classes.textField}
@@ -302,7 +313,11 @@ export default function HotelSpecific() {
                             <TextField
                               id="standard-select-rooms"
                               select
-                              label="Rooms"
+                              label={
+                                <span className={classes.labelStyle}>
+                                  Rooms
+                                </span>
+                              }
                               value={rooms}
                               onChange={handleRoomNumberChange}
                               className={classes.textField}
