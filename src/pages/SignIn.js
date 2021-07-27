@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { makeStyles } from "@material-ui/styles";
 import {
   Typography,
@@ -12,9 +12,13 @@ import KingBedOutlinedIcon from "@material-ui/icons/KingBedOutlined";
 import RestaurantOutlinedIcon from "@material-ui/icons/RestaurantOutlined";
 import RowingOutlinedIcon from "@material-ui/icons/RowingOutlined";
 import Header from "../components/Header";
-import { Link, Route } from "react-router-dom";
+import { Link, Route, useHistory } from "react-router-dom";
 import SignUpImage from "../assets/signup.png";
 import * as route from "../constants/Routes";
+import axios from "axios";
+import jwt_decode from "jwt-decode";
+import { useDispatch } from "react-redux";
+import { setUser } from "../redux/slice/User";
 
 const useStyles = makeStyles((theme) => ({
   mainContainer: {
@@ -116,6 +120,33 @@ const useStyles = makeStyles((theme) => ({
 
 export default function SignIn() {
   const classes = useStyles();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const history = useHistory();
+  const dispatch = useDispatch();
+
+  const signIn = async () => {
+    const body = {
+      email,
+      password,
+    };
+    const res = await axios.post(`user/login/`, body);
+    console.log(res);
+    if (res.status === 200) {
+      const token = res.data.access;
+      localStorage.setItem("token", token);
+      axios.defaults.headers["Authorization"] = "JWT ".concat(token);
+      const { user_id } = jwt_decode(token);
+      console.log(user_id);
+      const profileRes = await axios.get("user/" + user_id);
+      // console.log(profileRes);
+      if (profileRes.status === 200) {
+        dispatch(setUser(profileRes.data));
+        history.push("/");
+      }
+      // history.push("/");
+    }
+  };
 
   return (
     <React.Fragment>
@@ -155,6 +186,10 @@ export default function SignIn() {
                         type="email"
                         variant="outlined"
                         className={classes.textField}
+                        value={email}
+                        onChange={(e) => {
+                          setEmail(e.target.value);
+                        }}
                       />
                     </Grid>
                     <Grid item>
@@ -164,12 +199,17 @@ export default function SignIn() {
                         type="password"
                         variant="outlined"
                         className={classes.textField}
+                        value={password}
+                        onChange={(e) => {
+                          setPassword(e.target.value);
+                        }}
                       />
                     </Grid>
                     <Grid item>
                       <Button
                         variant="contained"
                         className={classes.signInButton}
+                        onClick={signIn}
                       >
                         Sign In
                       </Button>
