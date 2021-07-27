@@ -21,6 +21,8 @@ import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import Avatar from "@material-ui/core/Avatar";
 import RatingCard from "../../components/RatingCard";
+import WifiIcon from "@material-ui/icons/Wifi";
+import LocalOfferIcon from "@material-ui/icons/LocalOffer";
 
 const PrettoSlider = withStyles((theme) => ({
   root: {
@@ -103,17 +105,34 @@ const useStyles = makeStyles((theme) => ({
     //padding: 10,
     flex: 1,
   },
-  searchButton: {
+  cardQuote: {
     //padding: 10,
     marginTop: "2em",
-    color: theme.palette.common.white,
-    backgroundColor: theme.palette.secondary.main,
-    width: "20em",
-    "&:hover": {
-      backgroundColor: theme.palette.secondary.light,
-    },
+    fontFamily: "Raleway",
+    color: theme.palette.secondary.main,
   },
-
+  hotelNameDescSub: {
+    ...theme.typography.subtitle1,
+    color: theme.palette.common.grey,
+  },
+  amenitiesText: {
+    fontFamily: "Raleway",
+    textTransform: "none",
+    fontWeight: 400,
+    fontSize: "0.7rem",
+    display: "flex",
+    alignItems: "center",
+    flexWrap: "wrap",
+    marginTop: "0.4em",
+  },
+  amenitiesIcon: {
+    height: "0.6em",
+    width: "0.6em",
+    marginRight: "0.5em",
+    // paddingTop: "0.2em",
+    //color: theme.palette.common.green,
+    alignItems: "flex-end",
+  },
   contentStyle: {
     height: "2em",
     color: "#fff",
@@ -127,12 +146,11 @@ const useStyles = makeStyles((theme) => ({
     "& > *": {
       //margin: theme.spacing(1),
       width: "40em",
-      height: "40em",
+      height: "30em",
     },
   },
   sidePaper: {
-    paddingTop: "3em",
-    padding: "0.4em",
+    padding: "2em",
   },
   map: {
     width: "40em",
@@ -148,7 +166,7 @@ const useStyles = makeStyles((theme) => ({
   formLabel: {
     ...theme.typography.tab,
     //fontWeight: "bold",
-    color: theme.palette.common.grey,
+    color: theme.palette.common.black,
     marginBottom: "0.7em",
     fontSize: "0.8rem",
     "&.Mui-focused": {
@@ -286,7 +304,7 @@ export default function RestaurantSpecific() {
             <Grid container direction="column" spacing={3}>
               <Grid item>
                 <Typography variant="h1">
-                  Hotel Pasadena{"  "}
+                  Sea Food Heaven{"  "}
                   <Rating
                     name="read-only"
                     value={4}
@@ -297,10 +315,7 @@ export default function RestaurantSpecific() {
               </Grid>
               <Grid item>
                 <Typography variant="subtitle1">
-                  <PhoneInTalkOutlinedIcon className={classes.phoneIcon} />
-                  <span>+99018726356, </span>
-                  <MailOutlineOutlined className={classes.mailIcon} />
-                  <span>tasnim282@gmail.com</span>
+                  Fresh food, good food!
                 </Typography>
               </Grid>
               <Grid item>
@@ -318,118 +333,52 @@ export default function RestaurantSpecific() {
                           container
                           direction="column"
                           alignItems="center"
-                          justify="center"
                           spacing={3}
                         >
                           <Grid item>
-                            <Grid
-                              container
-                              direction="row"
-                              spacing={3}
-                              justify="center"
-                            >
-                              <Grid item xs={4}>
-                                <Datepicker
-                                  label="Check In"
-                                  onChange={handleFromDateChange}
-                                  date={from}
-                                />
-                              </Grid>
-                              <Grid item xs={4}>
-                                <Datepicker
-                                  label="Check Out"
-                                  onChange={handleToDateChange}
-                                  date={to}
-                                />
-                              </Grid>
-                            </Grid>
+                            <Typography className={classes.cardQuote}>
+                              Enjoy the food with a great view!
+                            </Typography>
                           </Grid>
                           <Grid item>
-                            <Grid
-                              container
-                              direction="row"
-                              spacing={3}
-                              justify="center"
-                            >
-                              <Grid item xs={6}>
-                                <TextField
-                                  id="standard-select-guests"
-                                  select
-                                  label={
-                                    <span className={classes.labelStyle}>
-                                      Guests Per Room
-                                    </span>
-                                  }
-                                  value={guestNumber}
-                                  onChange={handleGuestNumberChange}
-                                  className={classes.textField}
-                                >
-                                  {guestPerRoom.map((option) => (
-                                    <MenuItem
-                                      key={option.value}
-                                      value={option.value}
-                                    >
-                                      {option.label}
-                                    </MenuItem>
-                                  ))}
-                                </TextField>
-                              </Grid>
-                              <Grid item xs={6}>
-                                <TextField
-                                  id="standard-select-rooms"
-                                  select
-                                  label={
-                                    <span className={classes.labelStyle}>
-                                      Rooms
-                                    </span>
-                                  }
-                                  value={rooms}
-                                  onChange={handleRoomNumberChange}
-                                  className={classes.textField}
-                                >
-                                  {numberOfRooms.map((option) => (
-                                    <MenuItem
-                                      key={option.value}
-                                      value={option.value}
-                                    >
-                                      {option.label}
-                                    </MenuItem>
-                                  ))}
-                                </TextField>
-                              </Grid>
-                            </Grid>
+                            <Typography variant="subtitle1">
+                              <PhoneInTalkOutlinedIcon
+                                className={classes.phoneIcon}
+                              />
+                              <span>+99018726356, </span>
+                              <MailOutlineOutlined
+                                className={classes.mailIcon}
+                              />
+                              <span>tasnim282@gmail.com</span>
+                            </Typography>
                           </Grid>
+
                           <Grid item xs={12}>
                             <div className={classes.formControl}>
                               <Typography
                                 className={classes.formLabel}
                                 style={{ marginBottom: "3.5em" }}
                               >
-                                Price Range
+                                Price: $
                               </Typography>
-                              <div style={{ padding: "0em 0.8em" }}>
-                                <PrettoSlider
-                                  //ThumbComponent={AirbnbThumbComponent}
-                                  getAriaLabel={(index) =>
-                                    index === 0
-                                      ? "Minimum price"
-                                      : "Maximum price"
-                                  }
-                                  min={0}
-                                  max={50000}
-                                  defaultValue={[0, 20000]}
-                                  valueLabelDisplay="on"
-                                />
-                              </div>
                             </div>
                           </Grid>
                           <Grid item>
-                            <Button
-                              variant="contained"
-                              className={classes.searchButton}
-                            >
-                              Search
-                            </Button>
+                            <Typography className={classes.hotelNameDescSub}>
+                              Amenities:
+                            </Typography>
+
+                            <Typography className={classes.amenitiesText}>
+                              <WifiIcon className={classes.amenitiesIcon} />{" "}
+                              Free wi-fi
+                            </Typography>
+
+                            <Typography className={classes.amenitiesText}>
+                              <LocalOfferIcon
+                                className={classes.amenitiesIcon}
+                              />{" "}
+                              Special offer
+                            </Typography>
                           </Grid>
                         </Grid>
                       </Paper>
@@ -448,7 +397,7 @@ export default function RestaurantSpecific() {
                 </Grid>
               </Grid>
               <Grid item style={{ marginTop: "2em" }}>
-                <Grid container direction="row" justify="flex-end">
+                <Grid container direction="row">
                   <Grid item>
                     <Grid container direction="column" spacing={2}>
                       <Grid item>
