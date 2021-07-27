@@ -6,8 +6,8 @@ import { makeStyles } from "@material-ui/styles";
 import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Button from "@material-ui/core/Button";
-import { Link } from "react-router-dom";
-import { Typography } from "@material-ui/core";
+import { Link, useHistory } from "react-router-dom";
+import { Avatar, Typography } from "@material-ui/core";
 import logo1 from "../assets/logo1.png";
 import CreateOutlinedIcon from "@material-ui/icons/CreateOutlined";
 import NotificationsActiveOutlinedIcon from "@material-ui/icons/NotificationsActiveOutlined";
@@ -18,6 +18,8 @@ import InputBase from "@material-ui/core/InputBase";
 import Paper from "@material-ui/core/Paper";
 import Divider from "@material-ui/core/Divider";
 import SearchIcon from "@material-ui/icons/Search";
+import { useDispatch, useSelector } from "react-redux";
+import { setDefault } from "../redux/slice/User";
 
 function ElevationScroll(props) {
   const { children } = props;
@@ -150,8 +152,16 @@ const useStyles = makeStyles((theme) => ({
 
 export default function Header(props) {
   const classes = useStyles();
-
+  const data = useSelector((state) => state.user.data);
   const [tabIndexValue, setTabIndexValue] = React.useState("0");
+  const dispatch = useDispatch();
+  const history = useHistory();
+
+  const logOut = () => {
+    localStorage.removeItem("token");
+    dispatch(setDefault());
+    history.push("/");
+  };
 
   // const handleTabChange = (event, newValue) => {
   //   setTabIndexValue(newValue);
@@ -221,14 +231,25 @@ export default function Header(props) {
 
           <span className={classes.iconButtonText}>Alerts</span>
         </IconButton>
-        <Button
-          variant="outlined"
-          className={classes.signInButtonHolder}
-          component={Link}
-          to={route.SIGNIN}
-        >
-          <span className={classes.signInButtonText}>Sign In</span>
-        </Button>
+        {data ? (
+          <Button
+            variant="outlined"
+            className={classes.signInButtonHolder}
+            component={Link}
+            onClick={logOut}
+          >
+            <span className={classes.signInButtonText}>{data.first_name}</span>
+          </Button>
+        ) : (
+          <Button
+            variant="outlined"
+            className={classes.signInButtonHolder}
+            component={Link}
+            to={route.SIGNIN}
+          >
+            <span className={classes.signInButtonText}>Sign In</span>
+          </Button>
+        )}
       </div>
 
       {/* <Tabs

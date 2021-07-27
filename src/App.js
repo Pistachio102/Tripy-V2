@@ -13,38 +13,42 @@ import HotelSpecific from "./pages/Hotel/HotelSpecific";
 import RestaurantSpecific from "./pages/Restaurant/RestaurantSpecific";
 import Layout from "./layout/Layout";
 import * as route from "./constants/Routes";
+import { Provider } from "react-redux";
+import store from "./redux/store/Store";
 
 export default function App() {
   return (
     <ThemeProvider theme={theme}>
-      <BrowserRouter>
-        <Switch>
-          <Route exact path={route.HOME} component={LandingPage} />
-          <Route exact path={route.TRIPS} component={Trips} />
-          <Route exact path={route.SIGNIN} component={SignIn} />
-          <Route exact path={route.SIGNUP} component={SignUp} />
-          <Route exact path={route.HOTELSPECIFIC} component={HotelSpecific} />
-          <Route
-            exact
-            path={route.RESTAURANTSPECIFIC}
-            component={RestaurantSpecific}
-          />
+      <Provider store={store}>
+        <BrowserRouter>
+          <Switch>
+            <Route exact path={route.HOME} component={LandingPage} />
+            <Route exact path={route.TRIPS} component={Trips} />
+            <Route exact path={route.SIGNIN} component={SignIn} />
+            <Route exact path={route.SIGNUP} component={SignUp} />
+            <Route exact path={route.HOTELSPECIFIC} component={HotelSpecific} />
+            <Route
+              exact
+              path={route.RESTAURANTSPECIFIC}
+              component={RestaurantSpecific}
+            />
 
-          <Layout>
-            <Route exact path={route.HOTELS} component={HotelHomePage} />
-            <Route
-              exact
-              path={route.RESTAURANTS}
-              component={RestaurantHomePage}
-            />
-            <Route
-              exact
-              path={route.ATTRACTIONS}
-              component={AttractionHomePage}
-            />
-          </Layout>
-        </Switch>
-      </BrowserRouter>
+            <Layout>
+              <Route exact path={route.HOTELS} component={HotelHomePage} />
+              <Route
+                exact
+                path={route.RESTAURANTS}
+                component={RestaurantHomePage}
+              />
+              <Route
+                exact
+                path={route.ATTRACTIONS}
+                component={AttractionHomePage}
+              />
+            </Layout>
+          </Switch>
+        </BrowserRouter>
+      </Provider>
     </ThemeProvider>
   );
 }
