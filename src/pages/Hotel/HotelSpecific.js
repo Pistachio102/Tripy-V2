@@ -127,7 +127,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   sidePaper: {
-    paddingTop: "3em",
+    paddingTop: "1em",
     padding: "0.4em",
   },
   map: {
@@ -197,16 +197,27 @@ const useStyles = makeStyles((theme) => ({
 }));
 const guestPerRoom = [
   {
-    value: "1",
-    label: "1",
+    value: "single-bed",
+    label: "Single Bed",
   },
   {
-    value: "2",
-    label: "2",
+    value: "double-bed",
+    label: "Double Bed",
   },
   {
-    value: "4",
-    label: "4",
+    value: "suite",
+    label: "Suite",
+  },
+];
+
+const facilities = [
+  {
+    value: "a/c",
+    label: "Air Conditioned",
+  },
+  {
+    value: "nona/c",
+    label: "Non Air Conditioned",
   },
 ];
 
@@ -243,10 +254,16 @@ export default function HotelSpecific() {
     setTo(date);
   };
 
-  const [guestNumber, setGuestNumber] = React.useState("1");
+  const [guestNumber, setGuestNumber] = React.useState("single-bed");
 
   const handleGuestNumberChange = (event) => {
     setGuestNumber(event.target.value);
+  };
+
+  const [facility, setFacility] = React.useState("a/c");
+
+  const handleFacilityChange = (event) => {
+    setFacility(event.target.value);
   };
 
   const [rooms, setRooms] = React.useState("1");
@@ -267,6 +284,7 @@ export default function HotelSpecific() {
             <InputBase
               className={classes.input}
               placeholder="Where to go?"
+              onChange={(e) => {}}
               inputProps={{ "aria-label": "search database" }}
             />
           </Paper>
@@ -328,6 +346,7 @@ export default function HotelSpecific() {
                                   label="Check In"
                                   onChange={handleFromDateChange}
                                   date={from}
+                                  onChange={(e) => {}}
                                 />
                               </Grid>
                               <Grid item xs={4}>
@@ -335,6 +354,7 @@ export default function HotelSpecific() {
                                   label="Check Out"
                                   onChange={handleToDateChange}
                                   date={to}
+                                  onChange={(e) => {}}
                                 />
                               </Grid>
                             </Grid>
@@ -352,7 +372,7 @@ export default function HotelSpecific() {
                                   select
                                   label={
                                     <span className={classes.labelStyle}>
-                                      Guests Per Room
+                                      Room Type
                                     </span>
                                   }
                                   value={guestNumber}
@@ -370,6 +390,38 @@ export default function HotelSpecific() {
                                 </TextField>
                               </Grid>
                               <Grid item xs={6}>
+                                <TextField
+                                  id="standard-select-facility"
+                                  select
+                                  label={
+                                    <span className={classes.labelStyle}>
+                                      Facilities
+                                    </span>
+                                  }
+                                  value={facility}
+                                  onChange={handleFacilityChange}
+                                  className={classes.textField}
+                                >
+                                  {facilities.map((option) => (
+                                    <MenuItem
+                                      key={option.value}
+                                      value={option.value}
+                                    >
+                                      {option.label}
+                                    </MenuItem>
+                                  ))}
+                                </TextField>
+                              </Grid>
+                            </Grid>
+                          </Grid>
+                          <Grid item>
+                            <Grid
+                              container
+                              direction="row"
+                              spacing={3}
+                              //justify="flex-start"
+                            >
+                              <Grid item xs={12}>
                                 <TextField
                                   id="standard-select-rooms"
                                   select
@@ -392,8 +444,32 @@ export default function HotelSpecific() {
                                   ))}
                                 </TextField>
                               </Grid>
+                              {/* <Grid item xs={6}>
+                                <TextField
+                                  id="standard-select-rooms"
+                                  select
+                                  label={
+                                    <span className={classes.labelStyle}>
+                                      Rooms
+                                    </span>
+                                  }
+                                  value={rooms}
+                                  onChange={handleRoomNumberChange}
+                                  className={classes.textField}
+                                >
+                                  {numberOfRooms.map((option) => (
+                                    <MenuItem
+                                      key={option.value}
+                                      value={option.value}
+                                    >
+                                      {option.label}
+                                    </MenuItem>
+                                  ))}
+                                </TextField>
+                              </Grid> */}
                             </Grid>
                           </Grid>
+
                           <Grid item xs={12}>
                             <div className={classes.formControl}>
                               <Typography
@@ -414,6 +490,7 @@ export default function HotelSpecific() {
                                   max={50000}
                                   defaultValue={[0, 20000]}
                                   valueLabelDisplay="on"
+                                  onChange={(e) => {}}
                                 />
                               </div>
                             </div>
