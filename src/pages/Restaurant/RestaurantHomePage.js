@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   makeStyles,
   Typography,
@@ -31,6 +31,7 @@ import HotelThumbnail4 from "../../assets/hotel4.jpeg";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import Slider from "@material-ui/core/Slider";
 import RestaurantCard from "../../components/RestaurantCard";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   mainContainer: {
@@ -237,16 +238,17 @@ const PrettoSlider = withStyles((theme) => ({
 function AirbnbThumbComponent(props) {
   return (
     <span {...props}>
-      <span className="bar" />
-      <span className="bar" />
-      <span className="bar" />
+      <span className="has_bar" />
+      <span className="has_bar" />
+      <span className="has_bar" />
     </span>
   );
 }
 
 export default function HotelHomePage() {
   const classes = useStyles();
-
+  const [restaurantList, setRestaurantList] = useState([]);
+  const [searchKey, setSearchKey] = useState("");
   const [from, setFrom] = React.useState(new Date());
   const [to, setTo] = React.useState(new Date());
   const handleFromDateChange = (date) => {
@@ -264,6 +266,8 @@ export default function HotelHomePage() {
 
   const handlePriceChange = (event) => {
     setpriceState({ ...priceState, [event.target.name]: event.target.checked });
+    priceState[event.target.name] = event.target.checked;
+    fetchData();
   };
 
   const { cheapEats, midRange, fineDining } = priceState;
@@ -276,43 +280,47 @@ export default function HotelHomePage() {
 
   const handleMealsChange = (event) => {
     setMealsState({ ...mealsState, [event.target.name]: event.target.checked });
+    fetchData();
   };
 
   const { breakfast, lunch, dinner } = mealsState;
 
   const [cuisineState, setCuisineState] = React.useState({
-    korean: false,
-    indian: false,
-    bengali: false,
-    fusion: false,
-    chinese: false,
-    bar: false,
-    italian: false,
-    mexican: false,
-    thai: false,
-    international: false,
-    fastFood: false,
+    has_korean: false,
+    has_indian: false,
+    has_bengali: false,
+    has_fusion: false,
+    has_chinese: false,
+    has_bar: false,
+    has_italian: false,
+    has_mexican: false,
+    has_thai: false,
+    has_international: false,
+    has_fast_food: false,
   });
 
   const handleCuisineChange = (event) => {
+    // const temp =
     setCuisineState({
       ...cuisineState,
       [event.target.name]: event.target.checked,
     });
+    cuisineState[event.target.name] = event.target.checked;
+    fetchData();
   };
 
   const {
-    korean,
-    indian,
-    bengali,
-    fusion,
-    chinese,
-    bar,
-    italian,
-    mexican,
-    thai,
-    international,
-    fastFood,
+    has_korean,
+    has_indian,
+    has_bengali,
+    has_fusion,
+    has_chinese,
+    has_bar,
+    has_italian,
+    has_mexican,
+    has_thai,
+    has_international,
+    has_fast_food,
   } = cuisineState;
 
   const [hotelClassValue, setHotelClassValue] = React.useState();
@@ -320,6 +328,40 @@ export default function HotelHomePage() {
   const handleHotelClassChange = (event) => {
     setHotelClassValue(event.target.value);
   };
+
+  const getQueryString = () => {
+    let qString = "";
+    for (var key in cuisineState) {
+      console.log(key);
+      console.log(cuisineState[key]);
+      qString += cuisineState[key] ? `&${key}=${cuisineState[key]}` : "";
+    }
+
+    return qString;
+  };
+
+  const fetchData = async () => {
+    const price = priceState.cheapEats
+      ? "low"
+      : priceState.midRange
+      ? "mid"
+      : priceState.fineDining
+      ? "high"
+      : "";
+    const resAddress = await axios.get(
+      `restaurants/?address=${searchKey}&${getQueryString()}&price=${price}`
+    );
+    const resName = await axios.get(
+      `restaurants/?name=${searchKey}&${getQueryString()}&price=${price}`
+    );
+    const data = resAddress.data.concat(resName.data);
+
+    console.log(data);
+  };
+  useEffect(() => {
+    fetchData();
+    // getQueryString();
+  }, []);
 
   return (
     <React.Fragment>
@@ -336,7 +378,11 @@ export default function HotelHomePage() {
                   <InputBase
                     className={classes.input}
                     placeholder="Where to go?"
-                    onChange={(e) => {}}
+                    value={searchKey}
+                    onChange={(e) => {
+                      setSearchKey(e.target.value);
+                      fetchData();
+                    }}
                     inputProps={{ "aria-label": "search database" }}
                   />
                 </Paper>
@@ -519,9 +565,9 @@ export default function HotelHomePage() {
                             <FormControlLabel
                               control={
                                 <Checkbox
-                                  checked={bengali}
+                                  checked={has_bengali}
                                   onChange={handleCuisineChange}
-                                  name="bengali"
+                                  name="has_bengali"
                                 />
                               }
                               label={
@@ -533,9 +579,9 @@ export default function HotelHomePage() {
                             <FormControlLabel
                               control={
                                 <Checkbox
-                                  checked={indian}
+                                  checked={has_indian}
                                   onChange={handleCuisineChange}
-                                  name="indian"
+                                  name="has_indian"
                                 />
                               }
                               label={
@@ -548,9 +594,9 @@ export default function HotelHomePage() {
                             <FormControlLabel
                               control={
                                 <Checkbox
-                                  checked={mexican}
+                                  checked={has_mexican}
                                   onChange={handleCuisineChange}
-                                  name="mexican"
+                                  name="has_mexican"
                                 />
                               }
                               label={
@@ -562,9 +608,9 @@ export default function HotelHomePage() {
                             <FormControlLabel
                               control={
                                 <Checkbox
-                                  checked={italian}
+                                  checked={has_italian}
                                   onChange={handleCuisineChange}
-                                  name="italian"
+                                  name="has_italian"
                                 />
                               }
                               label={
@@ -576,9 +622,9 @@ export default function HotelHomePage() {
                             <FormControlLabel
                               control={
                                 <Checkbox
-                                  checked={korean}
+                                  checked={has_korean}
                                   onChange={handleCuisineChange}
-                                  name="korean"
+                                  name="has_korean"
                                 />
                               }
                               label={
@@ -590,9 +636,9 @@ export default function HotelHomePage() {
                             <FormControlLabel
                               control={
                                 <Checkbox
-                                  checked={chinese}
+                                  checked={has_chinese}
                                   onChange={handleCuisineChange}
-                                  name="chinese"
+                                  name="has_chinese"
                                 />
                               }
                               label={
@@ -604,9 +650,9 @@ export default function HotelHomePage() {
                             <FormControlLabel
                               control={
                                 <Checkbox
-                                  checked={thai}
+                                  checked={has_thai}
                                   onChange={handleCuisineChange}
-                                  name="thai"
+                                  name="has_thai"
                                 />
                               }
                               label={
@@ -619,9 +665,9 @@ export default function HotelHomePage() {
                             <FormControlLabel
                               control={
                                 <Checkbox
-                                  checked={bar}
+                                  checked={has_bar}
                                   onChange={handleCuisineChange}
-                                  name="bar"
+                                  name="has_bar"
                                 />
                               }
                               label={
@@ -634,9 +680,9 @@ export default function HotelHomePage() {
                             <FormControlLabel
                               control={
                                 <Checkbox
-                                  checked={fastFood}
+                                  checked={has_fast_food}
                                   onChange={handleCuisineChange}
-                                  name="fastFood"
+                                  name="has_fast_food"
                                 />
                               }
                               label={
@@ -649,9 +695,9 @@ export default function HotelHomePage() {
                             <FormControlLabel
                               control={
                                 <Checkbox
-                                  checked={international}
+                                  checked={has_international}
                                   onChange={handleCuisineChange}
-                                  name="international"
+                                  name="has_international"
                                 />
                               }
                               label={
