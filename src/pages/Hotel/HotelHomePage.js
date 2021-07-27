@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   makeStyles,
   Typography,
@@ -31,6 +31,7 @@ import HotelThumbnail4 from "../../assets/hotel4.jpeg";
 import RadioGroup from "@material-ui/core/RadioGroup";
 import Slider from "@material-ui/core/Slider";
 import HotelCard from "../../components/HotelCard";
+import axios from "axios";
 
 const useStyles = makeStyles((theme) => ({
   mainContainer: {
@@ -248,7 +249,7 @@ function AirbnbThumbComponent(props) {
 
 export default function HotelHomePage() {
   const classes = useStyles();
-
+  const [hotelList, setHotelList] = useState([]);
   const [from, setFrom] = React.useState(new Date());
   const [to, setTo] = React.useState(new Date());
   const handleFromDateChange = (date) => {
@@ -289,6 +290,14 @@ export default function HotelHomePage() {
   const handleHotelClassChange = (event) => {
     setHotelClassValue(event.target.value);
   };
+
+  const fetchData = async () => {
+    const data = await axios.get(`hotels/`);
+    console.log(data);
+  };
+  useEffect(() => {
+    fetchData();
+  }, []);
 
   return (
     <React.Fragment>
