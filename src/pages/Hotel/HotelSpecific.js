@@ -63,7 +63,7 @@ const PrettoSlider = withStyles((theme) => ({
 
 const useStyles = makeStyles((theme) => ({
   mainContainer: {
-    marginTop: "6rem",
+    marginTop: "2rem",
     marginLeft: "12rem",
     marginRight: "12rem",
     //paddingLeft: "15rem",
@@ -98,11 +98,7 @@ const useStyles = makeStyles((theme) => ({
     alignItems: "flex-start",
     width: 400,
   },
-  input: {
-    marginLeft: theme.spacing(1),
-    //padding: 10,
-    flex: 1,
-  },
+
   searchButton: {
     //padding: 10,
     marginTop: "2em",
@@ -187,6 +183,17 @@ const useStyles = makeStyles((theme) => ({
   avatar: {
     backgroundColor: theme.palette.common.grey,
   },
+  searchStyle: {
+    marginTop: "2em",
+    padding: "2px",
+    display: "flex",
+    alignItems: "flex-start",
+    width: 400,
+  },
+  input: {
+    marginLeft: theme.spacing(1),
+    //padding: 10,
+  },
 }));
 const guestPerRoom = [
   {
@@ -250,6 +257,21 @@ export default function HotelSpecific() {
   return (
     <React.Fragment>
       <Header />
+      <Grid container justify="center">
+        <Grid item>
+          <Paper
+            variant="outlined"
+            component="form"
+            className={classes.searchStyle}
+          >
+            <InputBase
+              className={classes.input}
+              placeholder="Where to go?"
+              inputProps={{ "aria-label": "search database" }}
+            />
+          </Paper>
+        </Grid>
+      </Grid>
       <div className={classes.mainContainer}>
         <Grid container direction="column" spacing={3} alignItems="center">
           <Grid item>
