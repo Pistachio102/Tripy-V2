@@ -283,12 +283,14 @@ export default function HotelHomePage() {
   const [cuisineState, setCuisineState] = React.useState({
     korean: false,
     indian: false,
-
+    bengali: false,
+    fusion: false,
     chinese: false,
     bar: false,
     italian: false,
     mexican: false,
     thai: false,
+    international: false,
     fastFood: false,
   });
 
@@ -302,12 +304,14 @@ export default function HotelHomePage() {
   const {
     korean,
     indian,
-
+    bengali,
+    fusion,
     chinese,
     bar,
     italian,
     mexican,
     thai,
+    international,
     fastFood,
   } = cuisineState;
 
@@ -515,6 +519,20 @@ export default function HotelHomePage() {
                             <FormControlLabel
                               control={
                                 <Checkbox
+                                  checked={bengali}
+                                  onChange={handleCuisineChange}
+                                  name="bengali"
+                                />
+                              }
+                              label={
+                                <span className={classes.formControlLabelText}>
+                                  Bengali
+                                </span>
+                              }
+                            />
+                            <FormControlLabel
+                              control={
+                                <Checkbox
                                   checked={indian}
                                   onChange={handleCuisineChange}
                                   name="indian"
@@ -624,6 +642,21 @@ export default function HotelHomePage() {
                               label={
                                 <span className={classes.formControlLabelText}>
                                   Fast Food
+                                </span>
+                              }
+                            />
+
+                            <FormControlLabel
+                              control={
+                                <Checkbox
+                                  checked={international}
+                                  onChange={handleCuisineChange}
+                                  name="international"
+                                />
+                              }
+                              label={
+                                <span className={classes.formControlLabelText}>
+                                  International
                                 </span>
                               }
                             />
