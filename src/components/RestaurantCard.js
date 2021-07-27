@@ -223,6 +223,8 @@ export default function RestaurantCard({
                   variant="text"
                   // disableRipple="true"
                   // disableElevation="true"
+                  component={Link}
+                  to={route.RESTAURANTSPECIFIC}
                   style={{ margin: 0, padding: 0 }}
                 >
                   <span className={classes.hotelNameTitle}>{name}</span>
@@ -257,6 +259,8 @@ export default function RestaurantCard({
                   className={classes.viewDealsButton}
                   disableRipple="true"
                   //disableElevation="true"
+                  component={Link}
+                  to={route.RESTAURANTSPECIFIC}
                 >
                   View Deals
                 </Button>

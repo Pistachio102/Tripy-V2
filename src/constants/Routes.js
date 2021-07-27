@@ -6,3 +6,4 @@ export const TRIPS = "/trips";
 export const SIGNIN = "/signin";
 export const SIGNUP = "/signup";
 export const HOTELSPECIFIC = "/hotelspecific";
+export const RESTAURANTSPECIFIC = "/restaurantspecific";

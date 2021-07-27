@@ -1,5 +1,11 @@
 import React, { useState } from "react";
-import { makeStyles, Typography, withStyles, Button } from "@material-ui/core";
+import {
+  makeStyles,
+  Typography,
+  withStyles,
+  Button,
+  InputBase,
+} from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import Paper from "@material-ui/core/Paper";
 import Divider from "@material-ui/core/Divider";
@@ -28,7 +34,7 @@ import HotelCard from "../../components/HotelCard";
 
 const useStyles = makeStyles((theme) => ({
   mainContainer: {
-    marginTop: "1rem",
+    marginTop: "0rem",
     marginLeft: "15rem",
     marginRight: "15rem",
   },
@@ -52,6 +58,9 @@ const useStyles = makeStyles((theme) => ({
       //margin: theme.spacing(1),
       width: "22em",
       //height: "40em",
+      [theme.breakpoints.down("lg")]: {
+        width: "20em",
+      },
     },
   },
   hotelDescriptionPaperDiv: {
@@ -175,6 +184,18 @@ const useStyles = makeStyles((theme) => ({
     //color: theme.palette.common.green,
     alignItems: "flex-end",
   },
+  searchStyle: {
+    marginTop: "2em",
+    padding: "2px",
+    display: "flex",
+    alignItems: "flex-start",
+    width: 400,
+  },
+  input: {
+    marginLeft: theme.spacing(1),
+    //padding: 10,
+    flex: 1,
+  },
 }));
 
 const PrettoSlider = withStyles((theme) => ({
@@ -272,7 +293,24 @@ export default function HotelHomePage() {
   return (
     <React.Fragment>
       <div className={classes.mainContainer}>
-        <Grid container direction="column">
+        <Grid container direction="column" spacing={4}>
+          <Grid item>
+            <Grid container justify="center">
+              <Grid item>
+                <Paper
+                  variant="outlined"
+                  component="form"
+                  className={classes.searchStyle}
+                >
+                  <InputBase
+                    className={classes.input}
+                    placeholder="Where to go?"
+                    inputProps={{ "aria-label": "search database" }}
+                  />
+                </Paper>
+              </Grid>
+            </Grid>
+          </Grid>
           <Grid item>
             <Grid container direction="row">
               <Grid item>

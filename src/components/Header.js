@@ -94,16 +94,25 @@ const useStyles = makeStyles((theme) => ({
     color: theme.palette.common.grey,
     marginRight: "1em",
     minWidth: 15,
+    "&:hover": {
+      color: theme.palette.common.grey,
+    },
   },
   iconButton: {
     color: theme.palette.common.grey,
 
     height: "0.8em",
     width: "0.8em",
+    "&:hover": {
+      color: theme.palette.common.grey,
+    },
   },
   iconButtonText: {
     ...theme.typography.tab,
     marginLeft: "0.1em",
+    "&:hover": {
+      color: theme.palette.common.grey,
+    },
   },
   signInButtonHolder: {
     //color: theme.palette.common.grey,
