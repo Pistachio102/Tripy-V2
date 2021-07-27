@@ -25,9 +25,14 @@ const useStyles = makeStyles((theme) => ({
     marginRight: "15rem",
   },
   carouselStyle: {
-    width: "60%",
-    height: "700px",
-    backgroundColor: theme.palette.common.black,
+    // width: "50em",
+    height: "32em",
+    backgroundColor: "transparent",
+  },
+  hotelThumbnail: {
+    height: "30em",
+    width: "70em",
+    margin: 0,
   },
 }));
 
@@ -37,31 +42,32 @@ export default function Carousels() {
 
   const images = [
     {
-      title: "",
+      title: "1",
       img: HotelThumbnail,
     },
     {
-      title: "",
+      title: "1",
       img: HotelThumbnail2,
     },
     {
-      title: "",
+      title: "1",
       img: HotelThumbnail3,
     },
   ];
   function Item(props) {
     return (
       <Paper>
-        <h2>{props.item.name}</h2>
-        <p>{props.item.description}</p>
-
-        <Button className="CheckButton">Check it out!</Button>
+        <img
+          alt="Hotel Picture"
+          src={props.item.img}
+          className={classes.hotelThumbnail}
+        />
       </Paper>
     );
   }
   return (
     <React.Fragment>
-      <Carousel>
+      <Carousel className={classes.carouselStyle}>
         {images.map((item, i) => (
           <Item key={i} item={item} />
         ))}
