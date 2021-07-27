@@ -188,7 +188,7 @@ export default function HotelCard({
   rating,
   money,
   freeCancellation,
-  payAtStay,
+  freeParking,
   pool,
   wifi,
   offer,
@@ -271,7 +271,7 @@ export default function HotelCard({
           </Grid>
           <Grid item>
             <Grid container direction="column">
-              {freeCancellation || payAtStay ? (
+              {freeCancellation || freeParking ? (
                 <Grid item style={{ marginTop: "1.5rem" }}>
                   {freeCancellation ? (
                     <Typography className={classes.amenitiesText}>
@@ -281,7 +281,7 @@ export default function HotelCard({
                   ) : (
                     ""
                   )}
-                  {payAtStay ? (
+                  {freeParking ? (
                     <Typography className={classes.amenitiesText}>
                       <CheckCircleIcon className={classes.checkedIcon} />
                       Pay at stay

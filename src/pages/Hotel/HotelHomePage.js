@@ -261,7 +261,7 @@ export default function HotelHomePage() {
 
   const [dealsState, setDealsState] = React.useState({
     freeCancellation: false,
-    payAtStay: false,
+    freeParking: false,
     specialOffers: false,
   });
 
@@ -269,7 +269,7 @@ export default function HotelHomePage() {
     setDealsState({ ...dealsState, [event.target.name]: event.target.checked });
   };
 
-  const { freeCancellation, payAtStay, specialOffers } = dealsState;
+  const { freeCancellation, freeParking, specialOffers } = dealsState;
 
   const [propertyTypeState, setPropertyTypeState] = React.useState({
     allInclusives: false,
@@ -418,14 +418,14 @@ export default function HotelHomePage() {
                             <FormControlLabel
                               control={
                                 <Checkbox
-                                  checked={payAtStay}
+                                  checked={freeParking}
                                   onChange={handleDealsChange}
-                                  name="payAtStay"
+                                  name="freeParking"
                                 />
                               }
                               label={
                                 <span className={classes.formControlLabelText}>
-                                  Reserve now, pay at stay
+                                  Free Parking
                                 </span>
                               }
                             />
@@ -597,7 +597,7 @@ export default function HotelHomePage() {
                     rating={5}
                     money="BDT 10,000"
                     freeCancellation={true}
-                    payAtStay={true}
+                    freeParking={true}
                     pool={true}
                     wifi={true}
                     offer={true}
@@ -611,7 +611,7 @@ export default function HotelHomePage() {
                     rating={4}
                     money="BDT 3,000"
                     freeCancellation={true}
-                    payAtStay={true}
+                    freeParking={true}
                     pool={true}
                     wifi={true}
                     offer={false}
@@ -625,7 +625,7 @@ export default function HotelHomePage() {
                     rating={3}
                     money="BDT 12,000"
                     freeCancellation={true}
-                    payAtStay={true}
+                    freeParking={true}
                     pool={true}
                     wifi={true}
                     offer={true}
@@ -639,7 +639,7 @@ export default function HotelHomePage() {
                     rating={4}
                     money="BDT 5,000"
                     freeCancellation={true}
-                    payAtStay={true}
+                    freeParking={true}
                     pool={true}
                     wifi={true}
                     offer={false}
