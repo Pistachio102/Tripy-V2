@@ -333,7 +333,7 @@ export default function RestaurantSpecific() {
                           container
                           direction="column"
                           alignItems="center"
-                          spacing={3}
+                          spacing={2}
                         >
                           <Grid item>
                             <Typography className={classes.cardQuote}>
@@ -353,13 +353,21 @@ export default function RestaurantSpecific() {
                             </Typography>
                           </Grid>
 
-                          <Grid item xs={12}>
+                          <Grid item>
                             <div className={classes.formControl}>
                               <Typography
                                 className={classes.formLabel}
-                                style={{ marginBottom: "3.5em" }}
+                                style={{ marginBottom: "0.5em" }}
                               >
                                 Price: $
+                              </Typography>
+                            </div>
+                            <div className={classes.formControl}>
+                              <Typography
+                                className={classes.formLabel}
+                                style={{ marginBottom: "0.5em" }}
+                              >
+                                Cuisine: Sea Food
                               </Typography>
                             </div>
                           </Grid>

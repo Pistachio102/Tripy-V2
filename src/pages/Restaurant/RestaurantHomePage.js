@@ -281,20 +281,14 @@ export default function HotelHomePage() {
   const { breakfast, lunch, dinner } = mealsState;
 
   const [cuisineState, setCuisineState] = React.useState({
-    asian: false,
-    seaFood: false,
-    cafe: false,
     korean: false,
     indian: false,
-    bengali: false,
-    fusion: false,
+
     chinese: false,
     bar: false,
     italian: false,
     mexican: false,
     thai: false,
-    american: false,
-    international: false,
     fastFood: false,
   });
 
@@ -306,20 +300,14 @@ export default function HotelHomePage() {
   };
 
   const {
-    asian,
-    seaFood,
-    cafe,
     korean,
     indian,
-    bengali,
-    fusion,
+
     chinese,
     bar,
     italian,
     mexican,
     thai,
-    american,
-    international,
     fastFood,
   } = cuisineState;
 
@@ -527,20 +515,6 @@ export default function HotelHomePage() {
                             <FormControlLabel
                               control={
                                 <Checkbox
-                                  checked={bengali}
-                                  onChange={handleCuisineChange}
-                                  name="bengali"
-                                />
-                              }
-                              label={
-                                <span className={classes.formControlLabelText}>
-                                  Bengali
-                                </span>
-                              }
-                            />
-                            <FormControlLabel
-                              control={
-                                <Checkbox
                                   checked={indian}
                                   onChange={handleCuisineChange}
                                   name="indian"
@@ -552,20 +526,7 @@ export default function HotelHomePage() {
                                 </span>
                               }
                             />
-                            <FormControlLabel
-                              control={
-                                <Checkbox
-                                  checked={american}
-                                  onChange={handleCuisineChange}
-                                  name="american"
-                                />
-                              }
-                              label={
-                                <span className={classes.formControlLabelText}>
-                                  American
-                                </span>
-                              }
-                            />
+
                             <FormControlLabel
                               control={
                                 <Checkbox
@@ -636,34 +597,7 @@ export default function HotelHomePage() {
                                 </span>
                               }
                             />
-                            <FormControlLabel
-                              control={
-                                <Checkbox
-                                  checked={cafe}
-                                  onChange={handleCuisineChange}
-                                  name="cafe"
-                                />
-                              }
-                              label={
-                                <span className={classes.formControlLabelText}>
-                                  Cafe
-                                </span>
-                              }
-                            />
-                            <FormControlLabel
-                              control={
-                                <Checkbox
-                                  checked={seaFood}
-                                  onChange={handleCuisineChange}
-                                  name="seaFood"
-                                />
-                              }
-                              label={
-                                <span className={classes.formControlLabelText}>
-                                  Sea Food
-                                </span>
-                              }
-                            />
+
                             <FormControlLabel
                               control={
                                 <Checkbox
@@ -678,20 +612,7 @@ export default function HotelHomePage() {
                                 </span>
                               }
                             />
-                            <FormControlLabel
-                              control={
-                                <Checkbox
-                                  checked={asian}
-                                  onChange={handleCuisineChange}
-                                  name="asian"
-                                />
-                              }
-                              label={
-                                <span className={classes.formControlLabelText}>
-                                  Asian
-                                </span>
-                              }
-                            />
+
                             <FormControlLabel
                               control={
                                 <Checkbox
@@ -703,34 +624,6 @@ export default function HotelHomePage() {
                               label={
                                 <span className={classes.formControlLabelText}>
                                   Fast Food
-                                </span>
-                              }
-                            />
-                            <FormControlLabel
-                              control={
-                                <Checkbox
-                                  checked={fusion}
-                                  onChange={handleCuisineChange}
-                                  name="fusion"
-                                />
-                              }
-                              label={
-                                <span className={classes.formControlLabelText}>
-                                  Fusion
-                                </span>
-                              }
-                            />
-                            <FormControlLabel
-                              control={
-                                <Checkbox
-                                  checked={international}
-                                  onChange={handleCuisineChange}
-                                  name="international"
-                                />
-                              }
-                              label={
-                                <span className={classes.formControlLabelText}>
-                                  International
                                 </span>
                               }
                             />

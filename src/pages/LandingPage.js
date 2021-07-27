@@ -10,7 +10,8 @@ import KingBedOutlinedIcon from "@material-ui/icons/KingBedOutlined";
 import RestaurantOutlinedIcon from "@material-ui/icons/RestaurantOutlined";
 import RowingOutlinedIcon from "@material-ui/icons/RowingOutlined";
 import Header from "../components/Header";
-import { Link } from "react-router-dom";
+import { Link, Route } from "react-router-dom";
+import * as route from "../constants/Routes";
 
 const useStyles = makeStyles((theme) => ({
   mainContainer: {
@@ -103,19 +104,34 @@ export default function LandingPage() {
           >
             <Grid container direction="row" justify="space-between">
               <Grid item>
-                <Button variant="outlined" className={classes.buttonStyle}>
+                <Button
+                  variant="outlined"
+                  className={classes.buttonStyle}
+                  component={Link}
+                  to={route.HOTELS}
+                >
                   Hotel
                   <KingBedOutlinedIcon style={{ marginLeft: "0.5em" }} />
                 </Button>
               </Grid>
               <Grid item>
-                <Button variant="outlined" className={classes.buttonStyle}>
+                <Button
+                  variant="outlined"
+                  className={classes.buttonStyle}
+                  component={Link}
+                  to={route.RESTAURANTS}
+                >
                   Restaurant
                   <RestaurantOutlinedIcon style={{ marginLeft: "0.5em" }} />
                 </Button>
               </Grid>
               <Grid item>
-                <Button variant="outlined" className={classes.buttonStyle}>
+                <Button
+                  variant="outlined"
+                  className={classes.buttonStyle}
+                  component={Link}
+                  to={route.ATTRACTIONS}
+                >
                   Things to Do
                   <RowingOutlinedIcon style={{ marginLeft: "0.5em" }} />
                 </Button>
