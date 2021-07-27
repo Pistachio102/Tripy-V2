@@ -14,6 +14,9 @@ import "antd/dist/antd.css";
 import Carousels from "../../components/Carousel";
 import Datepicker from "../../components/DatePicker";
 import Rating from "@material-ui/lab/Rating";
+import PhoneInTalkOutlinedIcon from "@material-ui/icons/PhoneInTalkOutlined";
+import EmailOutlinedIcon from "@material-ui/icons/EmailOutlined";
+import { MailOutlineOutlined } from "@material-ui/icons";
 
 const PrettoSlider = withStyles((theme) => ({
   root: {
@@ -159,6 +162,18 @@ const useStyles = makeStyles((theme) => ({
     fontFamily: "Raleway",
     color: theme.palette.common.grey,
   },
+  phoneIcon: {
+    height: "0.6em",
+    width: "0.6em",
+    verticalAlign: "bottom",
+    marginRight: "0.2em",
+  },
+  mailIcon: {
+    height: "0.6em",
+    width: "0.6em",
+    verticalAlign: "bottom",
+    marginRight: "0.2em",
+  },
 }));
 const guestPerRoom = [
   {
@@ -236,6 +251,14 @@ export default function HotelSpecific() {
                 readOnly
                 style={{ verticalAlign: "" }}
               />
+            </Typography>
+          </Grid>
+          <Grid item>
+            <Typography variant="subtitle1">
+              <PhoneInTalkOutlinedIcon className={classes.phoneIcon} />
+              <span>+99018726356, </span>
+              <MailOutlineOutlined className={classes.mailIcon} />
+              <span>tasnim282@gmail.com</span>
             </Typography>
           </Grid>
           <Grid item>
@@ -380,6 +403,7 @@ export default function HotelSpecific() {
               </Grid>
             </Grid>
           </Grid>
+          <Grid item></Grid>
         </Grid>
       </div>
     </React.Fragment>
