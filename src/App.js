@@ -9,6 +9,7 @@ import AttractionHomePage from "./pages/Attraction/AttractionHomePage";
 import Trips from "./pages/Trips";
 import SignIn from "./pages/SignIn";
 import SignUp from "./pages/SignUp";
+import HotelSpecific from "./pages/Hotel/HotelSpecific";
 import Layout from "./layout/Layout";
 import * as route from "./constants/Routes";
 
@@ -21,7 +22,8 @@ export default function App() {
           <Route exact path={route.TRIPS} component={Trips} />
           <Route exact path={route.SIGNIN} component={SignIn} />
           <Route exact path={route.SIGNUP} component={SignUp} />
-          ``
+          <Route exact path={route.HOTELSPECIFIC} component={HotelSpecific} />
+
           <Layout>
             <Route exact path={route.HOTELS} component={HotelHomePage} />
             <Route

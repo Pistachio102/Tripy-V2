@@ -12,9 +12,9 @@ import KingBedOutlinedIcon from "@material-ui/icons/KingBedOutlined";
 import RestaurantOutlinedIcon from "@material-ui/icons/RestaurantOutlined";
 import RowingOutlinedIcon from "@material-ui/icons/RowingOutlined";
 import Header from "../components/Header";
-import { Link } from "react-router-dom";
 import SignUpImage from "../assets/signup.png";
 import * as route from "../constants/Routes";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   mainContainer: {
@@ -54,7 +54,7 @@ const useStyles = makeStyles((theme) => ({
   },
   textField: {
     margin: theme.spacing(1),
-    width: "20em",
+    width: "30em",
   },
   input: {
     marginLeft: theme.spacing(1),

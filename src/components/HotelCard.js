@@ -10,6 +10,8 @@ import WifiIcon from "@material-ui/icons/Wifi";
 import LocalOfferIcon from "@material-ui/icons/LocalOffer";
 import LanguageIcon from "@material-ui/icons/Language";
 import Rating from "@material-ui/lab/Rating";
+import * as route from "../constants/Routes";
+import { Link } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
   mainContainer: {
@@ -46,11 +48,14 @@ const useStyles = makeStyles((theme) => ({
     "& > *": {
       //margin: theme.spacing(1),
       width: "100%",
+      height: "15em",
     },
   },
   hotelDescriptionPaper: {
     flexWrap: "wrap",
-    padding: "0.2em",
+    paddingLeft: "0.2em",
+    paddingTop: "0.2em",
+    paddingBottom: "0.2em",
     height: "100%",
     width: "100%",
     "&:hover": {
@@ -58,8 +63,8 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   hotelThumbnail: {
-    height: "15em",
-    width: "15em",
+    height: "100%",
+    width: "18em",
     margin: 0,
   },
   hotelNameTitle: {
@@ -193,14 +198,14 @@ export default function HotelCard({
   return (
     <div className={classes.hotelDescriptionPaperDiv}>
       <Paper elevation={1} className={classes.hotelDescriptionPaper}>
-        <Grid item container direction="row" space={1}>
-          {/* <Grid item> */}
-          <img
-            alt="Hotel Picture"
-            src={image}
-            className={classes.hotelThumbnail}
-          ></img>
-          {/* </Grid> */}
+        <Grid container direction="row" space={2}>
+          <Grid item>
+            <img
+              alt="Hotel Picture"
+              src={image}
+              className={classes.hotelThumbnail}
+            />
+          </Grid>
           <Grid item>
             <Grid
               container
@@ -214,6 +219,8 @@ export default function HotelCard({
                   // disableRipple="true"
                   // disableElevation="true"
                   style={{ margin: 0, padding: 0 }}
+                  component={Link}
+                  to={route.HOTELSPECIFIC}
                 >
                   <span className={classes.hotelNameTitle}>{name}</span>
                 </Button>
@@ -247,6 +254,8 @@ export default function HotelCard({
                   className={classes.viewDealsButton}
                   disableRipple="true"
                   //disableElevation="true"
+                  component={Link}
+                  to={route.HOTELSPECIFIC}
                 >
                   View Deals
                 </Button>

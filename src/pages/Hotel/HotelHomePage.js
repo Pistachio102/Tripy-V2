@@ -50,7 +50,7 @@ const useStyles = makeStyles((theme) => ({
     flexWrap: "wrap",
     "& > *": {
       //margin: theme.spacing(1),
-      width: "15em",
+      width: "22em",
       //height: "40em",
     },
   },
@@ -64,7 +64,8 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   hotelDescriptionPaper: {
-    flexWrap: "wrap",
+    //flexWrap: "wrap",
+    display: "flex",
     padding: "0.2em",
     height: "100%",
     width: "100%",
