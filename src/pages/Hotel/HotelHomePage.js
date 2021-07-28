@@ -251,6 +251,9 @@ export default function HotelHomePage() {
   const classes = useStyles();
   const [hotelList, setHotelList] = useState([]);
   const [from, setFrom] = React.useState(new Date());
+  const [searchKey, setSearchKey] = useState("");
+  const [minPrice, setMinPrice] = useState("0");
+  const [maxPrice, setMaxPrice] = useState("20000");
   const [to, setTo] = React.useState(new Date());
   const handleFromDateChange = (date) => {
     setFrom(date);
@@ -289,10 +292,24 @@ export default function HotelHomePage() {
 
   const handleHotelClassChange = (event) => {
     setHotelClassValue(event.target.value);
+    // console.log();
   };
 
   const fetchData = async () => {
-    const data = await axios.get(`hotels/`);
+    console.log("fetching");
+    let qString = "";
+    qString += `&address=${searchKey}`;
+    qString += freeCancellation
+      ? `&allows_free_cancellation=${freeCancellation}`
+      : "";
+    qString += payAtStay ? `&allows_pay_stay=${payAtStay}` : "";
+    qString += specialOffers ? `&allows_special_offers=${specialOffers}` : "";
+    qString += minPrice !== "" ? `&min_price=${Number(minPrice)}` : "";
+    qString += maxPrice !== "" ? `&max_price=${Number(maxPrice)}` : "";
+    // qString += ?`&=${}`:'';
+    // qString += ?`&=${}`:'';
+    const data = await axios.get(`hotels/?${qString}`);
+    setHotelList(data.data);
     console.log(data);
   };
   useEffect(() => {
@@ -314,7 +331,9 @@ export default function HotelHomePage() {
                   <InputBase
                     className={classes.input}
                     placeholder="Where to go?"
-                    onChange={(e) => {}}
+                    onChange={(e) => {
+                      setSearchKey(e.target.value);
+                    }}
                     inputProps={{ "aria-label": "search database" }}
                   />
                 </Paper>
@@ -383,6 +402,13 @@ export default function HotelHomePage() {
                               min={0}
                               max={50000}
                               defaultValue={[0, 20000]}
+                              onChange={(e) => {
+                                // console.log(e);
+                                if (e.target.ariaLabel === "Minimum price")
+                                  setMinPrice(e.target.outerText);
+                                if (e.target.ariaLabel === "Maximum price")
+                                  setMaxPrice(e.target.outerText);
+                              }}
                               valueLabelDisplay="on"
                             />
                           </div>
@@ -586,67 +612,27 @@ export default function HotelHomePage() {
                         <Divider variant="middle" />
                       </Grid>
                     </Grid>
+                    <Button onClick={fetchData}>Search</Button>
                   </Paper>
                 </div>
               </Grid>
               <Grid item container direction="column" xs={9}>
-                <Grid item>
-                  <HotelCard
-                    image={HotelThumbnail}
-                    name="Hotel Pasadena"
-                    rating={5}
-                    money="BDT 10,000"
-                    freeCancellation={true}
-                    payAtStay={true}
-                    pool={true}
-                    wifi={true}
-                    offer={true}
-                    website={true}
-                  />
-                </Grid>
-                <Grid item>
-                  <HotelCard
-                    image={HotelThumbnail2}
-                    name="Sylhet Palace"
-                    rating={4}
-                    money="BDT 3,000"
-                    freeCancellation={true}
-                    payAtStay={true}
-                    pool={true}
-                    wifi={true}
-                    offer={false}
-                    website={true}
-                  />
-                </Grid>
-                <Grid item>
-                  <HotelCard
-                    image={HotelThumbnail3}
-                    name="Grand Sultan"
-                    rating={3}
-                    money="BDT 12,000"
-                    freeCancellation={true}
-                    payAtStay={true}
-                    pool={true}
-                    wifi={true}
-                    offer={true}
-                    website={true}
-                  />
-                </Grid>
-                <Grid item>
-                  <HotelCard
-                    image={HotelThumbnail4}
-                    name="Royal Palace"
-                    rating={4}
-                    money="BDT 5,000"
-                    freeCancellation={true}
-                    payAtStay={true}
-                    pool={true}
-                    wifi={true}
-                    offer={false}
-                    website={true}
-                  />
-                </Grid>
-                <Grid item></Grid>
+                {hotelList.map((item) => (
+                  <Grid item>
+                    <HotelCard
+                      image={item.image}
+                      name={item.name}
+                      rating={5}
+                      money="BDT 10,000"
+                      freeCancellation={true}
+                      payAtStay={true}
+                      pool={true}
+                      wifi={true}
+                      offer={true}
+                      website={true}
+                    />
+                  </Grid>
+                ))}
               </Grid>
             </Grid>
           </Grid>
