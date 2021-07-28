@@ -5,6 +5,11 @@ import Tabs from "@material-ui/core/Tabs";
 import Tab from "@material-ui/core/Tab";
 import Header2 from "../../components/Header2";
 import { Link } from "react-router-dom";
+import AttractionPlaceCard from "../../components/AttractionPlaceCard";
+import HotelThumbnail from "../../assets/hotel.png";
+import HotelThumbnail2 from "../../assets/hotel2.jpg";
+import HotelThumbnail3 from "../../assets/hotel3.jpg";
+import HotelThumbnail4 from "../../assets/hotel4.jpeg";
 
 const AntTabs = withStyles((theme) => ({
   root: {
@@ -44,7 +49,7 @@ const AntTab = withStyles((theme) => ({
 
 const useStyles = makeStyles((theme) => ({
   mainContainer: {
-    marginTop: "1rem",
+    marginTop: "2rem",
     marginLeft: "15rem",
     marginRight: "15rem",
   },
@@ -63,5 +68,54 @@ export default function AttractionHomePage() {
   const handleChange = (event, newValue) => {
     setTabValue(newValue);
   };
-  return <React.Fragment> </React.Fragment>;
+  return (
+    <React.Fragment>
+      <div className={classes.mainContainer}>
+        <Grid container direction="row" spacing={3}>
+          <Grid item>
+            <AttractionPlaceCard
+              name="Lalakhal"
+              image={HotelThumbnail}
+              description="This is a chbsfsuvidnvdbn"
+            />
+          </Grid>
+          <Grid item>
+            <AttractionPlaceCard
+              name="Lalakhal"
+              image={HotelThumbnail}
+              description="This is a chbsfsuvidnvdbn"
+            />
+          </Grid>
+          <Grid item>
+            <AttractionPlaceCard
+              name="Lalakhal"
+              image={HotelThumbnail}
+              description="This is a chbsfsuvidnvdbn"
+            />
+          </Grid>
+          <Grid item>
+            <AttractionPlaceCard
+              name="Lalakhal"
+              image={HotelThumbnail}
+              description="This is a chbsfsuvidnvdbn"
+            />
+          </Grid>
+          <Grid item>
+            <AttractionPlaceCard
+              name="Lalakhal"
+              image={HotelThumbnail}
+              description="This is a chbsfsuvidnvdbn"
+            />
+          </Grid>
+          <Grid item>
+            <AttractionPlaceCard
+              name="Lalakhal"
+              image={HotelThumbnail}
+              description="This is a chbsfsuvidnvdbn"
+            />
+          </Grid>
+        </Grid>
+      </div>
+    </React.Fragment>
+  );
 }
