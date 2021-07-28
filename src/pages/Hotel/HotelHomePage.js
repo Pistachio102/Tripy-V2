@@ -32,6 +32,8 @@ import RadioGroup from "@material-ui/core/RadioGroup";
 import Slider from "@material-ui/core/Slider";
 import HotelCard from "../../components/HotelCard";
 import axios from "axios";
+import { setHotel } from "../../redux/slice/User";
+import { useDispatch } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   mainContainer: {
@@ -316,10 +318,11 @@ export default function HotelHomePage() {
     qString += freeCancellation
       ? `&allows_free_cancellation=${freeCancellation}`
       : "";
-    qString += payAtStay ? `&allows_pay_stay=${payAtStay}` : "";
+    qString += payAtStay ? `&allows_pay_at_stay=${payAtStay}` : "";
     qString += specialOffers ? `&allows_special_offers=${specialOffers}` : "";
     qString += minPrice !== "" ? `&min_price=${Number(minPrice)}` : "";
     qString += maxPrice !== "" ? `&max_price=${Number(maxPrice)}` : "";
+
     // qString += ?`&=${}`:'';
     // qString += ?`&=${}`:'';
     const data = await axios.get(`hotels/?${qString}`);
@@ -328,8 +331,9 @@ export default function HotelHomePage() {
   };
   useEffect(() => {
     fetchData();
+    localStorage.removeItem("hotel");
   }, []);
-
+  const dispatch = useDispatch();
   return (
     <React.Fragment>
       <div className={classes.mainContainer}>
@@ -638,20 +642,26 @@ export default function HotelHomePage() {
               </Grid>
               <Grid item container direction="column" xs={9}>
                 {hotelList.map((item) => (
-                  <Grid item>
-                    <HotelCard
-                      image={item.image}
-                      name={item.name}
-                      rating={5}
-                      money="BDT 10,000"
-                      freeCancellation={true}
-                      payAtStay={true}
-                      pool={true}
-                      wifi={true}
-                      offer={true}
-                      website={true}
-                    />
-                  </Grid>
+                  <div
+                    onClick={() =>
+                      localStorage.setItem("hotel", JSON.stringify(item))
+                    }
+                  >
+                    <Grid item>
+                      <HotelCard
+                        image={item.image}
+                        name={item.name}
+                        rating={5}
+                        money={item.price}
+                        freeCancellation={item.allows_free_cancellation}
+                        payAtStay={item.allows_pay_at_stay}
+                        pool={item.has_pool}
+                        wifi={item.has_wifi}
+                        offer={item.allows_special_offers}
+                        website={item.link}
+                      />
+                    </Grid>
+                  </div>
                 ))}
               </Grid>
             </Grid>

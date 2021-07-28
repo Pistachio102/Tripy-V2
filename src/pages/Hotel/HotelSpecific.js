@@ -21,6 +21,7 @@ import Card from "@material-ui/core/Card";
 import CardHeader from "@material-ui/core/CardHeader";
 import Avatar from "@material-ui/core/Avatar";
 import RatingCard from "../../components/RatingCard";
+import { useSelector } from "react-redux";
 
 const PrettoSlider = withStyles((theme) => ({
   root: {
@@ -245,6 +246,7 @@ const numberOfRooms = [
 ];
 export default function HotelSpecific() {
   const classes = useStyles();
+  const data = JSON.parse(localStorage.getItem("hotel"));
   const [from, setFrom] = React.useState(new Date());
   const [to, setTo] = React.useState(new Date());
   const handleFromDateChange = (date) => {
@@ -274,7 +276,7 @@ export default function HotelSpecific() {
   return (
     <React.Fragment>
       <Header />
-      <Grid container justify="center">
+      {/* <Grid container justify="center">
         <Grid item>
           <Paper
             variant="outlined"
@@ -289,7 +291,7 @@ export default function HotelSpecific() {
             />
           </Paper>
         </Grid>
-      </Grid>
+      </Grid> */}
       <div className={classes.mainContainer}>
         <Grid container direction="column" spacing={3} alignItems="center">
           <Grid item>
@@ -299,7 +301,7 @@ export default function HotelSpecific() {
             <Grid container direction="column" spacing={3}>
               <Grid item>
                 <Typography variant="h1">
-                  Hotel Pasadena{"  "}
+                  {data?.name}
                   <Rating
                     name="read-only"
                     value={4}
@@ -313,7 +315,7 @@ export default function HotelSpecific() {
                   <PhoneInTalkOutlinedIcon className={classes.phoneIcon} />
                   <span>+99018726356, </span>
                   <MailOutlineOutlined className={classes.mailIcon} />
-                  <span>tasnim282@gmail.com</span>
+                  <span>{data?.link}</span>
                 </Typography>
               </Grid>
               <Grid item>
