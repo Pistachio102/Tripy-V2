@@ -256,6 +256,7 @@ const numberOfRooms = [
 ];
 export default function RestaurantSpecific() {
   const classes = useStyles();
+  const data = JSON.parse(localStorage.getItem("restaurant"));
   const [from, setFrom] = React.useState(new Date());
   const [to, setTo] = React.useState(new Date());
   const handleFromDateChange = (date) => {
@@ -279,7 +280,7 @@ export default function RestaurantSpecific() {
   return (
     <React.Fragment>
       <Header />
-      <Grid container justify="center">
+      {/* <Grid container justify="center">
         <Grid item>
           <Paper
             variant="outlined"
@@ -294,7 +295,7 @@ export default function RestaurantSpecific() {
             />
           </Paper>
         </Grid>
-      </Grid>
+      </Grid> */}
       <div className={classes.mainContainer}>
         <Grid container direction="column" spacing={3} alignItems="center">
           <Grid item>
@@ -304,7 +305,7 @@ export default function RestaurantSpecific() {
             <Grid container direction="column" spacing={3}>
               <Grid item>
                 <Typography variant="h1">
-                  Sea Food Heaven{"  "}
+                  {data?.name}
                   <Rating
                     name="read-only"
                     value={4}
@@ -349,7 +350,7 @@ export default function RestaurantSpecific() {
                               <MailOutlineOutlined
                                 className={classes.mailIcon}
                               />
-                              <span>tasnim282@gmail.com</span>
+                              <span>{data.link}</span>
                             </Typography>
                           </Grid>
 

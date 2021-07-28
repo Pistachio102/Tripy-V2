@@ -375,6 +375,7 @@ export default function HotelHomePage() {
   };
   useEffect(() => {
     fetchData();
+    localStorage.removeItem("restaurant");
     // getQueryString();
   }, []);
 
@@ -783,18 +784,24 @@ export default function HotelHomePage() {
               </Grid>
               <Grid item container direction="column" xs={9}>
                 {restaurantList.map((item) => (
-                  <Grid item>
-                    <RestaurantCard
-                      image={item.image}
-                      name={item.name}
-                      type={"Thai"}
-                      rating={item.total_rating}
-                      money="$$"
-                      freeCancellation={true}
-                      wifi={true}
-                      offer={false}
-                    />
-                  </Grid>
+                  <div
+                    onClick={() =>
+                      localStorage.setItem("restaurant", JSON.stringify(item))
+                    }
+                  >
+                    <Grid item>
+                      <RestaurantCard
+                        image={item.image}
+                        name={item.name}
+                        type={"Thai"}
+                        rating={item.total_rating}
+                        money="$$"
+                        freeCancellation={true}
+                        wifi={true}
+                        offer={false}
+                      />
+                    </Grid>
+                  </div>
                 ))}
 
                 {/* <Grid item>
