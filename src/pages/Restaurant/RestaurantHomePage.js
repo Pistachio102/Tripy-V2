@@ -195,6 +195,20 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: theme.spacing(1),
     //padding: 10,
   },
+  SearchCriteriaButton: {
+    fontFamily: "Raleway",
+    textTransform: "none",
+    color: theme.palette.common.white,
+    backgroundColor: theme.palette.common.mastard,
+    // borderRadius: 15,
+    width: "100%",
+    marginTop: "2rem",
+    "&:hover": {
+      //color: theme.palette.common.grey,
+      backgroundColor: theme.palette.common.lightMastard,
+      color: theme.palette.common.white,
+    },
+  },
 }));
 
 const PrettoSlider = withStyles((theme) => ({
@@ -755,7 +769,13 @@ export default function HotelHomePage() {
                           {/* <FormHelperText>Be careful</FormHelperText> */}
                         </FormControl>
                         <Divider variant="middle" />
-                        <Button onClick={fetchData}>Search</Button>
+                        <Button
+                          variant="contained"
+                          className={classes.SearchCriteriaButton}
+                          onClick={fetchData}
+                        >
+                          Search
+                        </Button>
                       </Grid>
                     </Grid>
                   </Paper>
