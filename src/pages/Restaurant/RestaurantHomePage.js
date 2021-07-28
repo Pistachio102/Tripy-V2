@@ -352,7 +352,7 @@ export default function HotelHomePage() {
     //   `restaurants/?address=${searchKey}&${getQueryString()}&price=${price}`
     // );
     const resName = await axios.get(
-      `restaurants/?name=${searchKey}&${getQueryString()}&price=${price}`
+      `restaurants/?address=${searchKey}&${getQueryString()}&price=${price}`
     );
     const data = resName.data;
     setRestaurantList(data);
