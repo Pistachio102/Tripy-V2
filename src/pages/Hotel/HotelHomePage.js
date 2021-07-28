@@ -351,6 +351,7 @@ export default function HotelHomePage() {
                   <InputBase
                     className={classes.input}
                     placeholder="Where to go?"
+                    value={searchKey}
                     onChange={(e) => {
                       setSearchKey(e.target.value);
                     }}
