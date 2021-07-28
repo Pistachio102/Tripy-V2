@@ -302,10 +302,11 @@ export default function HotelHomePage() {
     qString += freeCancellation
       ? `&allows_free_cancellation=${freeCancellation}`
       : "";
-    qString += payAtStay ? `&allows_pay_stay=${payAtStay}` : "";
+    qString += payAtStay ? `&allows_pay_at_stay=${payAtStay}` : "";
     qString += specialOffers ? `&allows_special_offers=${specialOffers}` : "";
     qString += minPrice !== "" ? `&min_price=${Number(minPrice)}` : "";
     qString += maxPrice !== "" ? `&max_price=${Number(maxPrice)}` : "";
+
     // qString += ?`&=${}`:'';
     // qString += ?`&=${}`:'';
     const data = await axios.get(`hotels/?${qString}`);
@@ -623,13 +624,13 @@ export default function HotelHomePage() {
                       image={item.image}
                       name={item.name}
                       rating={5}
-                      money="BDT 10,000"
-                      freeCancellation={true}
-                      payAtStay={true}
-                      pool={true}
-                      wifi={true}
-                      offer={true}
-                      website={true}
+                      money={item.price}
+                      freeCancellation={item.allows_free_cancellation}
+                      payAtStay={item.allows_pay_at_stay}
+                      pool={item.has_pool}
+                      wifi={item.has_wifi}
+                      offer={item.allows_special_offers}
+                      website={item.link}
                     />
                   </Grid>
                 ))}
