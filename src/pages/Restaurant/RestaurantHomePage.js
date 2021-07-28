@@ -266,8 +266,8 @@ export default function HotelHomePage() {
 
   const handlePriceChange = (event) => {
     setpriceState({ ...priceState, [event.target.name]: event.target.checked });
-    priceState[event.target.name] = event.target.checked;
-    fetchData();
+    // priceState[event.target.name] = event.target.checked;
+    // fetchData();
   };
 
   const { cheapEats, midRange, fineDining } = priceState;
@@ -280,7 +280,7 @@ export default function HotelHomePage() {
 
   const handleMealsChange = (event) => {
     setMealsState({ ...mealsState, [event.target.name]: event.target.checked });
-    fetchData();
+    // fetchData();
   };
 
   const { breakfast, lunch, dinner } = mealsState;
@@ -305,8 +305,8 @@ export default function HotelHomePage() {
       ...cuisineState,
       [event.target.name]: event.target.checked,
     });
-    cuisineState[event.target.name] = event.target.checked;
-    fetchData();
+    // cuisineState[event.target.name] = event.target.checked;
+    // fetchData();
   };
 
   const {
@@ -332,8 +332,8 @@ export default function HotelHomePage() {
   const getQueryString = () => {
     let qString = "";
     for (var key in cuisineState) {
-      console.log(key);
-      console.log(cuisineState[key]);
+      // console.log(key);
+      // console.log(cuisineState[key]);
       qString += cuisineState[key] ? `&${key}=${cuisineState[key]}` : "";
     }
 
@@ -755,37 +755,29 @@ export default function HotelHomePage() {
                           {/* <FormHelperText>Be careful</FormHelperText> */}
                         </FormControl>
                         <Divider variant="middle" />
+                        <Button onClick={fetchData}>Search</Button>
                       </Grid>
                     </Grid>
                   </Paper>
                 </div>
               </Grid>
               <Grid item container direction="column" xs={9}>
-                <Grid item>
-                  <RestaurantCard
-                    image={HotelThumbnail}
-                    name="Sea Food Heaven"
-                    type="Sea Food"
-                    rating={5}
-                    money="$"
-                    freeCancellation={true}
-                    wifi={true}
-                    offer={true}
-                  />
-                </Grid>
-                <Grid item>
-                  <RestaurantCard
-                    image={HotelThumbnail2}
-                    name="Thai Heaven"
-                    type="Thai"
-                    rating={4}
-                    money="$$"
-                    freeCancellation={true}
-                    wifi={true}
-                    offer={false}
-                  />
-                </Grid>
-                <Grid item>
+                {restaurantList.map((item) => (
+                  <Grid item>
+                    <RestaurantCard
+                      image={item.image}
+                      name={item.name}
+                      type={"Thai"}
+                      rating={item.total_rating}
+                      money="$$"
+                      freeCancellation={true}
+                      wifi={true}
+                      offer={false}
+                    />
+                  </Grid>
+                ))}
+
+                {/* <Grid item>
                   <RestaurantCard
                     image={HotelThumbnail3}
                     name="Korean Heaven"
@@ -809,7 +801,7 @@ export default function HotelHomePage() {
                     offer={false}
                   />
                 </Grid>
-                <Grid item></Grid>
+                <Grid item></Grid> */}
               </Grid>
             </Grid>
           </Grid>
