@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { makeStyles, Typography, withStyles } from "@material-ui/core";
 import Grid from "@material-ui/core/Grid";
 import Tabs from "@material-ui/core/Tabs";
@@ -10,6 +10,7 @@ import HotelThumbnail from "../../assets/hotel.png";
 import HotelThumbnail2 from "../../assets/hotel2.jpg";
 import HotelThumbnail3 from "../../assets/hotel3.jpg";
 import HotelThumbnail4 from "../../assets/hotel4.jpeg";
+import axios from "axios";
 
 const AntTabs = withStyles((theme) => ({
   root: {
@@ -64,56 +65,32 @@ const useStyles = makeStyles((theme) => ({
 export default function AttractionHomePage() {
   const classes = useStyles();
   const [tabValue, setTabValue] = React.useState(0);
+  const [data, setData] = useState([]);
 
   const handleChange = (event, newValue) => {
     setTabValue(newValue);
   };
+  const fetchData = async () => {
+    const res = await axios.get(`things-to-do/`);
+    console.log(res);
+    setData(res.data);
+  };
+  useEffect(() => {
+    fetchData();
+  }, []);
   return (
     <React.Fragment>
       <div className={classes.mainContainer}>
         <Grid container direction="row" spacing={3}>
-          <Grid item>
-            <AttractionPlaceCard
-              name="Lalakhal"
-              image={HotelThumbnail}
-              description="This is a chbsfsuvidnvdbn"
-            />
-          </Grid>
-          <Grid item>
-            <AttractionPlaceCard
-              name="Lalakhal"
-              image={HotelThumbnail}
-              description="This is a chbsfsuvidnvdbn"
-            />
-          </Grid>
-          <Grid item>
-            <AttractionPlaceCard
-              name="Lalakhal"
-              image={HotelThumbnail}
-              description="This is a chbsfsuvidnvdbn"
-            />
-          </Grid>
-          <Grid item>
-            <AttractionPlaceCard
-              name="Lalakhal"
-              image={HotelThumbnail}
-              description="This is a chbsfsuvidnvdbn"
-            />
-          </Grid>
-          <Grid item>
-            <AttractionPlaceCard
-              name="Lalakhal"
-              image={HotelThumbnail}
-              description="This is a chbsfsuvidnvdbn"
-            />
-          </Grid>
-          <Grid item>
-            <AttractionPlaceCard
-              name="Lalakhal"
-              image={HotelThumbnail}
-              description="This is a chbsfsuvidnvdbn"
-            />
-          </Grid>
+          {data.map((item) => (
+            <Grid item>
+              <AttractionPlaceCard
+                name={item.name}
+                image={item.image}
+                description={item.description}
+              />
+            </Grid>
+          ))}
         </Grid>
       </div>
     </React.Fragment>
