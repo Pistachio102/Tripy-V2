@@ -348,13 +348,14 @@ export default function HotelHomePage() {
       : priceState.fineDining
       ? "high"
       : "";
-    const resAddress = await axios.get(
-      `restaurants/?address=${searchKey}&${getQueryString()}&price=${price}`
-    );
+    // const resAddress = await axios.get(
+    //   `restaurants/?address=${searchKey}&${getQueryString()}&price=${price}`
+    // );
     const resName = await axios.get(
       `restaurants/?name=${searchKey}&${getQueryString()}&price=${price}`
     );
-    const data = resAddress.data.concat(resName.data);
+    const data = resName.data;
+    setRestaurantList(data);
 
     console.log(data);
   };
