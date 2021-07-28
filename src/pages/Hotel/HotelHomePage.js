@@ -32,6 +32,8 @@ import RadioGroup from "@material-ui/core/RadioGroup";
 import Slider from "@material-ui/core/Slider";
 import HotelCard from "../../components/HotelCard";
 import axios from "axios";
+import { setHotel } from "../../redux/slice/User";
+import { useDispatch } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   mainContainer: {
@@ -315,8 +317,9 @@ export default function HotelHomePage() {
   };
   useEffect(() => {
     fetchData();
+    localStorage.removeItem("hotel");
   }, []);
-
+  const dispatch = useDispatch();
   return (
     <React.Fragment>
       <div className={classes.mainContainer}>
@@ -619,20 +622,26 @@ export default function HotelHomePage() {
               </Grid>
               <Grid item container direction="column" xs={9}>
                 {hotelList.map((item) => (
-                  <Grid item>
-                    <HotelCard
-                      image={item.image}
-                      name={item.name}
-                      rating={5}
-                      money={item.price}
-                      freeCancellation={item.allows_free_cancellation}
-                      payAtStay={item.allows_pay_at_stay}
-                      pool={item.has_pool}
-                      wifi={item.has_wifi}
-                      offer={item.allows_special_offers}
-                      website={item.link}
-                    />
-                  </Grid>
+                  <div
+                    onClick={() =>
+                      localStorage.setItem("hotel", JSON.stringify(item))
+                    }
+                  >
+                    <Grid item>
+                      <HotelCard
+                        image={item.image}
+                        name={item.name}
+                        rating={5}
+                        money={item.price}
+                        freeCancellation={item.allows_free_cancellation}
+                        payAtStay={item.allows_pay_at_stay}
+                        pool={item.has_pool}
+                        wifi={item.has_wifi}
+                        offer={item.allows_special_offers}
+                        website={item.link}
+                      />
+                    </Grid>
+                  </div>
                 ))}
               </Grid>
             </Grid>

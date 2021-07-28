@@ -196,146 +196,151 @@ export default function HotelCard({
 }) {
   const classes = useStyles();
   return (
-    <div className={classes.hotelDescriptionPaperDiv}>
-      <Paper elevation={1} className={classes.hotelDescriptionPaper}>
-        <Grid container direction="row" space={2}>
-          <Grid item>
-            <img
-              alt="Hotel Picture"
-              src={image}
-              className={classes.hotelThumbnail}
-            />
-          </Grid>
-          <Grid item>
-            <Grid
-              container
-              direction="column"
-              alignItems="flex-start"
-              className={classes.hotelPaperFirstColumn}
-            >
-              <Grid item>
-                <Button
-                  variant="text"
-                  // disableRipple="true"
-                  // disableElevation="true"
-                  style={{ margin: 0, padding: 0 }}
-                  component={Link}
-                  to={route.HOTELSPECIFIC}
-                >
-                  <span className={classes.hotelNameTitle}>{name}</span>
-                </Button>
-              </Grid>
-
-              <Grid item>
-                <Typography className={classes.hotelNameDescSub}>
-                  Rating:
-                </Typography>
-              </Grid>
+    <div
+      className={classes.hotelDescriptionPaperDiv}
+      onClick={localStorage.set}
+    >
+      <Link to={route.HOTELSPECIFIC}>
+        <Paper elevation={1} className={classes.hotelDescriptionPaper}>
+          <Grid container direction="row" space={2}>
+            <Grid item>
+              <img
+                alt="Hotel Picture"
+                src={image}
+                className={classes.hotelThumbnail}
+              />
+            </Grid>
+            <Grid item>
               <Grid
-                item
-                //className={classes.ratingIcons}
-                style={{ marginBottom: "1rem" }}
+                container
+                direction="column"
+                alignItems="flex-start"
+                className={classes.hotelPaperFirstColumn}
               >
-                <Rating name="read-only" value={rating} readOnly />
-              </Grid>
-              <Grid item>
-                <Typography className={classes.hotelNameDescSub}>
-                  Starts from:
-                </Typography>
-              </Grid>
-              <Grid item>
-                <Typography className={classes.hotelNameDescBold}>
-                  {money}
-                </Typography>
-              </Grid>
-              <Grid item>
-                <Button
-                  variant="contained"
-                  className={classes.viewDealsButton}
-                  disableRipple="true"
-                  //disableElevation="true"
-                  component={Link}
-                  to={route.HOTELSPECIFIC}
+                <Grid item>
+                  <Button
+                    variant="text"
+                    // disableRipple="true"
+                    // disableElevation="true"
+                    style={{ margin: 0, padding: 0 }}
+                    // component={Link}
+                    // to={route.HOTELSPECIFIC}
+                  >
+                    <span className={classes.hotelNameTitle}>{name}</span>
+                  </Button>
+                </Grid>
+
+                <Grid item>
+                  <Typography className={classes.hotelNameDescSub}>
+                    Rating:
+                  </Typography>
+                </Grid>
+                <Grid
+                  item
+                  //className={classes.ratingIcons}
+                  style={{ marginBottom: "1rem" }}
                 >
-                  View Deals
-                </Button>
+                  <Rating name="read-only" value={rating} readOnly />
+                </Grid>
+                <Grid item>
+                  <Typography className={classes.hotelNameDescSub}>
+                    Starts from:
+                  </Typography>
+                </Grid>
+                <Grid item>
+                  <Typography className={classes.hotelNameDescBold}>
+                    {money}
+                  </Typography>
+                </Grid>
+                <Grid item>
+                  <Button
+                    variant="contained"
+                    className={classes.viewDealsButton}
+                    disableRipple="true"
+                    //disableElevation="true"
+                    component={Link}
+                    to={route.HOTELSPECIFIC}
+                  >
+                    View Deals
+                  </Button>
+                </Grid>
               </Grid>
             </Grid>
-          </Grid>
-          <Grid item>
-            <Divider
-              variant="middle"
-              orientation="vertical"
-              className={classes.divider}
-            />
-          </Grid>
-          <Grid item>
-            <Grid container direction="column">
-              {freeCancellation || payAtStay ? (
-                <Grid item style={{ marginTop: "1.5rem" }}>
-                  {freeCancellation ? (
+            <Grid item>
+              <Divider
+                variant="middle"
+                orientation="vertical"
+                className={classes.divider}
+              />
+            </Grid>
+            <Grid item>
+              <Grid container direction="column">
+                {freeCancellation || payAtStay ? (
+                  <Grid item style={{ marginTop: "1.5rem" }}>
+                    {freeCancellation ? (
+                      <Typography className={classes.amenitiesText}>
+                        <CheckCircleIcon className={classes.checkedIcon} />
+                        Free cancellation
+                      </Typography>
+                    ) : (
+                      ""
+                    )}
+                    {payAtStay ? (
+                      <Typography className={classes.amenitiesText}>
+                        <CheckCircleIcon className={classes.checkedIcon} />
+                        Pay at stay
+                      </Typography>
+                    ) : (
+                      <Typography className={classes.amenitiesTextFalse}>
+                        <CheckCircleIcon className={classes.checkedIconFalse} />
+                        Pay at stay
+                      </Typography>
+                    )}
+                  </Grid>
+                ) : (
+                  ""
+                )}
+
+                <Grid item style={{ marginTop: "2rem" }}>
+                  <Typography className={classes.hotelNameDescSub}>
+                    Amenities:
+                  </Typography>
+                  {pool ? (
                     <Typography className={classes.amenitiesText}>
-                      <CheckCircleIcon className={classes.checkedIcon} />
-                      Free cancellation
+                      <PoolIcon className={classes.amenitiesIcon} /> Pool
                     </Typography>
                   ) : (
                     ""
                   )}
-                  {payAtStay ? (
+                  {wifi ? (
                     <Typography className={classes.amenitiesText}>
-                      <CheckCircleIcon className={classes.checkedIcon} />
-                      Pay at stay
+                      <WifiIcon className={classes.amenitiesIcon} /> Free wi-fi
                     </Typography>
                   ) : (
-                    <Typography className={classes.amenitiesTextFalse}>
-                      <CheckCircleIcon className={classes.checkedIconFalse} />
-                      Pay at stay
+                    ""
+                  )}
+                  {offer ? (
+                    <Typography className={classes.amenitiesText}>
+                      <LocalOfferIcon className={classes.amenitiesIcon} />{" "}
+                      Special offer
                     </Typography>
+                  ) : (
+                    ""
+                  )}
+                  {website ? (
+                    <Typography className={classes.amenitiesText}>
+                      <LanguageIcon className={classes.amenitiesIcon} /> Visit
+                      hotel's website
+                    </Typography>
+                  ) : (
+                    ""
                   )}
                 </Grid>
-              ) : (
-                ""
-              )}
-
-              <Grid item style={{ marginTop: "2rem" }}>
-                <Typography className={classes.hotelNameDescSub}>
-                  Amenities:
-                </Typography>
-                {pool ? (
-                  <Typography className={classes.amenitiesText}>
-                    <PoolIcon className={classes.amenitiesIcon} /> Pool
-                  </Typography>
-                ) : (
-                  ""
-                )}
-                {wifi ? (
-                  <Typography className={classes.amenitiesText}>
-                    <WifiIcon className={classes.amenitiesIcon} /> Free wi-fi
-                  </Typography>
-                ) : (
-                  ""
-                )}
-                {offer ? (
-                  <Typography className={classes.amenitiesText}>
-                    <LocalOfferIcon className={classes.amenitiesIcon} /> Special
-                    offer
-                  </Typography>
-                ) : (
-                  ""
-                )}
-                {website ? (
-                  <Typography className={classes.amenitiesText}>
-                    <LanguageIcon className={classes.amenitiesIcon} /> Visit
-                    hotel's website
-                  </Typography>
-                ) : (
-                  ""
-                )}
               </Grid>
             </Grid>
           </Grid>
-        </Grid>
-      </Paper>
+        </Paper>
+      </Link>
     </div>
   );
 }

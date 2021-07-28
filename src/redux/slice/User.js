@@ -5,11 +5,16 @@ export const userSlice = createSlice({
   name: "user",
   initialState: {
     data: null,
+    hotel: null,
   },
   reducers: {
     setUser: (state, action) => ({
       ...state,
       data: action.payload,
+    }),
+    setHotel: (state, action) => ({
+      ...state,
+      hotel: action.payload,
     }),
 
     setDefault: (state, action) => ({
@@ -18,6 +23,6 @@ export const userSlice = createSlice({
   },
 });
 
-export const { setUser, setDefault } = userSlice.actions;
+export const { setUser, setDefault, setHotel } = userSlice.actions;
 
 export default userSlice.reducer;
