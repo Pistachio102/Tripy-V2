@@ -12,6 +12,8 @@ import RowingOutlinedIcon from "@material-ui/icons/RowingOutlined";
 import Header from "../components/Header";
 import { Link, Route } from "react-router-dom";
 import * as route from "../constants/Routes";
+import { setSearchKey } from "../redux/slice/User";
+import { useDispatch } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   mainContainer: {
@@ -84,6 +86,7 @@ const useStyles = makeStyles((theme) => ({
 
 export default function LandingPage() {
   const classes = useStyles();
+  const dispatch = useDispatch();
 
   return (
     <React.Fragment>
@@ -164,7 +167,9 @@ export default function LandingPage() {
                     className={classes.input}
                     placeholder="Where to go?"
                     inputProps={{ "aria-label": "search database" }}
-                    onChange={(e) => {}}
+                    onChange={(e) => {
+                      dispatch(setSearchKey(e.target.value));
+                    }}
                   />
                   <Button
                     variant="contained"

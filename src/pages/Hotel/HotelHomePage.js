@@ -33,7 +33,7 @@ import Slider from "@material-ui/core/Slider";
 import HotelCard from "../../components/HotelCard";
 import axios from "axios";
 import { setHotel } from "../../redux/slice/User";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
   mainContainer: {
@@ -267,7 +267,9 @@ export default function HotelHomePage() {
   const classes = useStyles();
   const [hotelList, setHotelList] = useState([]);
   const [from, setFrom] = React.useState(new Date());
-  const [searchKey, setSearchKey] = useState("");
+  const data = useSelector((state) => state.user.searchKey);
+  const [searchKey, setSearchKey] = useState(data);
+
   const [minPrice, setMinPrice] = useState("0");
   const [maxPrice, setMaxPrice] = useState("20000");
   const [to, setTo] = React.useState(new Date());
@@ -370,9 +372,7 @@ export default function HotelHomePage() {
                 ></iframe>
               </Grid>
               <Grid item className={classes.firstRowSecondContainer}>
-                <Typography variant="h1">
-                  Sylhet Hotels and Places to Stay
-                </Typography>
+                <Typography variant="h1">Hotels and Places to Stay</Typography>
                 <Grid
                   container
                   direction="row"

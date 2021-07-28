@@ -6,6 +6,7 @@ export const userSlice = createSlice({
   initialState: {
     data: null,
     hotel: null,
+    searchKey: "",
   },
   reducers: {
     setUser: (state, action) => ({
@@ -16,6 +17,10 @@ export const userSlice = createSlice({
       ...state,
       hotel: action.payload,
     }),
+    setSearchKey: (state, action) => ({
+      ...state,
+      searchKey: action.payload,
+    }),
 
     setDefault: (state, action) => ({
       data: null,
@@ -23,6 +28,7 @@ export const userSlice = createSlice({
   },
 });
 
-export const { setUser, setDefault, setHotel } = userSlice.actions;
+export const { setUser, setDefault, setHotel, setSearchKey } =
+  userSlice.actions;
 
 export default userSlice.reducer;
